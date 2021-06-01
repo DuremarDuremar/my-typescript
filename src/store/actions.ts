@@ -1,11 +1,11 @@
-import { UserActionTypes, UserAction } from "../types/users";
+import { DefaultActionTypes, DefaultAction } from "../types/default";
 import { Dispatch } from "redux";
 import axios from "axios";
 
-export const fetchUsers = () => {
-  return async (dispatch: Dispatch<UserAction>) => {
+export const fetchSlider = () => {
+  return async (dispatch: Dispatch<DefaultAction>) => {
     try {
-      dispatch({ type: UserActionTypes.FETCH_USERS });
+      dispatch({ type: DefaultActionTypes.FETCH_DEFAULT });
       const res = await axios.get(
         "https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=David%20Lynch&page=1",
         {
@@ -16,11 +16,14 @@ export const fetchUsers = () => {
         }
       );
       dispatch({
-        type: UserActionTypes.FETCH_USERS_SUCCESS,
+        type: DefaultActionTypes.FETCH_DEFAULT_SUCCESS,
         payload: res.data.films,
       });
     } catch (e) {
-      dispatch({ type: UserActionTypes.FETCH_USERS_ERROR, payload: "ошибка" });
+      dispatch({
+        type: DefaultActionTypes.FETCH_DEFAULT_ERROR,
+        payload: "ошибка",
+      });
     }
   };
 };

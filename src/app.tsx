@@ -3,13 +3,13 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Main from "./pages/main";
 import Film from "./pages/film";
 import { useDispatch } from "react-redux";
-import { fetchUsers } from "./store/actions";
+import { fetchSlider } from "./store/actions";
 import { Global, Content } from "./styles/style_app";
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchUsers());
+    dispatch(fetchSlider());
   }, [dispatch]);
 
   return (

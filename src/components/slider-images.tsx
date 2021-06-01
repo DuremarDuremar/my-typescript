@@ -3,7 +3,7 @@ import { Content, Item } from "../styles/style_slider-images";
 import { useTypeSelector } from "../hooks/useTypeSelector";
 
 const SliderImages = () => {
-  const { error, loading, users } = useTypeSelector((state) => state.user);
+  const { error, loading, users } = useTypeSelector((state) => state.slider);
 
   console.log(users);
 
@@ -15,7 +15,7 @@ const SliderImages = () => {
     return (
       <Content>
         {users.map((item, index) => {
-          return <Item key={index}>{item.nameRu || item.nameEn}</Item>;
+          return <Item key={index}>{item.nameEn}</Item>;
         })}
       </Content>
     );
