@@ -5,7 +5,7 @@ import {
 } from "../types/default";
 
 const initianalState: DefaultState = {
-  users: [],
+  items: [],
   loading: false,
   error: null,
 };
@@ -16,11 +16,11 @@ export const sliderReducer = (
 ): DefaultState => {
   switch (action.type) {
     case DefaultActionTypes.FETCH_DEFAULT:
-      return { loading: true, error: null, users: [] };
+      return { loading: true, error: null, items: [] };
     case DefaultActionTypes.FETCH_DEFAULT_SUCCESS:
-      return { loading: false, error: null, users: action.payload };
+      return { loading: false, error: null, items: action.payload };
     case DefaultActionTypes.FETCH_DEFAULT_ERROR:
-      return { loading: false, error: action.payload, users: [] };
+      return { loading: false, error: action.payload, items: [] };
     default:
       return state;
   }

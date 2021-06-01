@@ -1,5 +1,5 @@
 export interface DefaultState {
-  users: any[];
+  items: any[];
   loading: boolean;
   error: null | string;
 }

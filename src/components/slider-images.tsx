@@ -3,9 +3,9 @@ import { Content, Item } from "../styles/style_slider-images";
 import { useTypeSelector } from "../hooks/useTypeSelector";
 
 const SliderImages = () => {
-  const { error, loading, users } = useTypeSelector((state) => state.slider);
+  const { error, loading, items } = useTypeSelector((state) => state.slider);
 
-  console.log(users);
+  console.log(items);
 
   if (error) {
     return <h1>{error}</h1>;
@@ -14,7 +14,7 @@ const SliderImages = () => {
   } else {
     return (
       <Content>
-        {users.map((item, index) => {
+        {items.map((item, index) => {
           return <Item key={index}>{item.nameEn}</Item>;
         })}
       </Content>
