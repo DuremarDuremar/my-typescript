@@ -1,19 +1,20 @@
-// import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { Content, Item } from "../styles/style_slider-images";
 import { useTypeSelector } from "../hooks/useTypeSelector";
 import { useElementOnScreen } from "../hooks/useElementOnScreen";
 import { IOptionsSlider } from "../types/options";
 
-const SliderImages = () => {
+const SliderImages: React.FC = () => {
+  const [isVisible, setIsVisible] = useState<boolean>(false);
   const { error, loading, items } = useTypeSelector((state) => state.slider);
-
+  console.log(isVisible);
   const options: IOptionsSlider = {
     root: null,
     rootMargin: "0px",
     threshold: 1,
   };
 
-  const containerRef = useElementOnScreen(options);
+  const containerRef = useElementOnScreen(options, setIsVisible);
 
   if (error) {
     return <h1>{error}</h1>;

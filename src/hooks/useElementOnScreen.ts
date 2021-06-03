@@ -1,28 +1,34 @@
-import React, { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useCallback } from "react";
 import { IOptionsSlider } from "../types/options";
 
-export const useElementOnScreen = (options: IOptionsSlider) => {
-  const [isVisible, setIsVisible] = useState<boolean>(false);
+export const useElementOnScreen = (
+  options: IOptionsSlider,
+  setIsVisible: React.Dispatch<React.SetStateAction<boolean>>
+) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const callbackFunction = (entries: any) => {
-    const [entry] = entries;
-    setIsVisible(entry.isIntersecting);
-  };
+  const callbackFunction = useCallback(
+    (entries: any) => {
+      const [entry] = entries;
+      setIsVisible(entry.isIntersecting);
+    },
+    [setIsVisible]
+  );
 
   useEffect(() => {
+    let observerRefValue: any = null;
+
     const observer = new IntersectionObserver(callbackFunction, options);
     if (containerRef.current) {
       observer.observe(containerRef.current);
+      observerRefValue = containerRef.current;
     }
     return () => {
-      if (containerRef.current) {
-        observer.observe(containerRef.current);
+      if (observerRefValue) {
+        observer.unobserve(observerRefValue);
       }
     };
-  }, [containerRef, options]);
-
-  console.log(isVisible);
+  }, [callbackFunction, containerRef, options]);
 
   return containerRef;
 };
