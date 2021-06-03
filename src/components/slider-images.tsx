@@ -12,10 +12,12 @@ const SliderImages: React.FC = () => {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchSlider());
-  }, [dispatch]);
+    dispatch(fetchSlider(isVisible));
+  }, [dispatch, isVisible]);
 
-  console.log(isVisible);
+  console.log("isVisible", isVisible);
+  console.log("items", items);
+
   const options: IOptionsSlider = {
     root: null,
     rootMargin: "0px",

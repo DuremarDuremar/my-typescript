@@ -10,12 +10,10 @@ export const useElementOnScreen = (
 
   const onThrottle = throttle(50, (entries: any) => {
     const [entry] = entries;
-    if (entry.isIntersecting) {
-      setIsVisible((prev) => prev + 1);
-    } else {
-      setIsVisible(0);
+    if (entry.isIntersecting === true) {
+      setIsVisible(1);
     }
-    // setIsVisible(entry.isIntersecting);
+    console.log(entry.isIntersecting);
   });
 
   const callbackFunction = useCallback(onThrottle, [onThrottle]);

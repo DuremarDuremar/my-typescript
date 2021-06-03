@@ -17,12 +17,17 @@ export const sliderReducer = (
 ): DefaultState => {
   switch (action.type) {
     case DefaultActionTypes.FETCH_DEFAULT:
-      return { loading: true, error: null, items: [], number: state.number };
+      return {
+        loading: true,
+        error: null,
+        items: state.items,
+        number: state.number,
+      };
     case DefaultActionTypes.FETCH_DEFAULT_SUCCESS:
       return {
         loading: false,
         error: null,
-        items: action.payload,
+        items: [...state.items, ...action.payload],
         number: state.number,
       };
     case DefaultActionTypes.FETCH_DEFAULT_ERROR:

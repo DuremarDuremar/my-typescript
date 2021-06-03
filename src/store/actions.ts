@@ -29,12 +29,12 @@ const array: string[][] = [
   ],
 ];
 
-export const fetchSlider = () => {
+export const fetchSlider = (n: number) => {
   return async (dispatch: Dispatch<DefaultAction>) => {
     try {
       dispatch({ type: DefaultActionTypes.FETCH_DEFAULT });
-      dispatch({ type: DefaultActionTypes.FETCH_DEFAULT_NUMBER, payload: 1 });
-      const resArray = array[0].map((item) => {
+      dispatch({ type: DefaultActionTypes.FETCH_DEFAULT_NUMBER, payload: n });
+      const resArray = array[n].map((item) => {
         const res = axios.get(
           `https://kinopoiskapiunofficial.tech/api/v2.1/films/${item}`,
           {
@@ -44,9 +44,9 @@ export const fetchSlider = () => {
             },
           }
         );
+
         return res;
       });
-
       dispatch({
         type: DefaultActionTypes.FETCH_DEFAULT_SUCCESS,
         payload: await Promise.all(resArray).then(function (values) {
