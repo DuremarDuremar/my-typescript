@@ -1,19 +1,24 @@
 import { useRef, useEffect, useCallback } from "react";
 import { IOptionsSlider } from "../types/options";
+import { throttle } from "throttle-debounce-ts";
 
 export const useElementOnScreen = (
   options: IOptionsSlider,
-  setIsVisible: React.Dispatch<React.SetStateAction<boolean>>
+  setIsVisible: React.Dispatch<React.SetStateAction<number>>
 ) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const callbackFunction = useCallback(
-    (entries: any) => {
-      const [entry] = entries;
-      setIsVisible(entry.isIntersecting);
-    },
-    [setIsVisible]
-  );
+  const onThrottle = throttle(50, (entries: any) => {
+    const [entry] = entries;
+    if (entry.isIntersecting) {
+      setIsVisible((prev) => prev + 1);
+    } else {
+      setIsVisible(0);
+    }
+    // setIsVisible(entry.isIntersecting);
+  });
+
+  const callbackFunction = useCallback(onThrottle, [onThrottle]);
 
   useEffect(() => {
     let observerRefValue: any = null;

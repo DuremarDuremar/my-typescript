@@ -2,25 +2,39 @@ import { DefaultActionTypes, DefaultAction } from "../types/default";
 import { Dispatch } from "redux";
 import axios from "axios";
 
-const array: string[] = [
-  "354",
-  "195434",
-  "425",
-  "361",
-  "15780",
-  "1040841",
-  "43970",
-  "557",
-  "588",
-  "81530",
+const array: string[][] = [
+  [
+    "354",
+    "195434",
+    "425",
+    "361",
+    "15780",
+    "1040841",
+    "43970",
+    "557",
+    "588",
+    "81530",
+  ],
+  [
+    "1219852",
+    "259788",
+    "1043758",
+    "942396",
+    "998317",
+    "944098",
+    "954059",
+    "57000",
+    "103733",
+    "4872",
+  ],
 ];
 
 export const fetchSlider = () => {
   return async (dispatch: Dispatch<DefaultAction>) => {
     try {
       dispatch({ type: DefaultActionTypes.FETCH_DEFAULT });
-
-      const resArray = array.map((item) => {
+      dispatch({ type: DefaultActionTypes.FETCH_DEFAULT_NUMBER, payload: 1 });
+      const resArray = array[0].map((item) => {
         const res = axios.get(
           `https://kinopoiskapiunofficial.tech/api/v2.1/films/${item}`,
           {

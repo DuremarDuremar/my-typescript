@@ -1,12 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Content, Item } from "../styles/style_slider-images";
 import { useTypeSelector } from "../hooks/useTypeSelector";
 import { useElementOnScreen } from "../hooks/useElementOnScreen";
 import { IOptionsSlider } from "../types/options";
+import { useDispatch } from "react-redux";
+import { fetchSlider } from "../store/actions";
 
 const SliderImages: React.FC = () => {
-  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [isVisible, setIsVisible] = useState<number>(0);
   const { error, loading, items } = useTypeSelector((state) => state.slider);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchSlider());
+  }, [dispatch]);
+
   console.log(isVisible);
   const options: IOptionsSlider = {
     root: null,

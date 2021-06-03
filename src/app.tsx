@@ -1,17 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Main from "./pages/main";
 import Film from "./pages/film";
-import { useDispatch } from "react-redux";
-import { fetchSlider } from "./store/actions";
+
 import { Global, Content } from "./styles/style_app";
 
 const App: React.FC = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchSlider());
-  }, [dispatch]);
-
   return (
     <Router>
       <Global />
