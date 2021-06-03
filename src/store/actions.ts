@@ -15,17 +15,12 @@ const array: string[] = [
   "81530",
 ];
 
-const ff = array.map((item, index) => {
-  return `https://kinopoiskapiunofficial.tech/api/v2.1/films/${item}`;
-});
-console.log(ff);
-
 export const fetchSlider = () => {
   return async (dispatch: Dispatch<DefaultAction>) => {
     try {
       dispatch({ type: DefaultActionTypes.FETCH_DEFAULT });
 
-      const resArray = array.map((item, index) => {
+      const resArray = array.map((item) => {
         const res = axios.get(
           `https://kinopoiskapiunofficial.tech/api/v2.1/films/${item}`,
           {

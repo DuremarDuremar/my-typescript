@@ -8,4 +8,8 @@ export const Item = styled.div`
   border-right: 2px solid black;
   min-width: 300px;
   min-height: 300px;
+  img {
+    width: 100%;
+    height: 100%;
+  }
 `;
