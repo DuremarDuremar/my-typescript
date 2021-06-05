@@ -4,14 +4,16 @@ import { throttle } from "throttle-debounce-ts";
 
 export const useElementOnScreen = (
   options: IOptionsSlider,
-  setIsVisible: React.Dispatch<React.SetStateAction<number>>
+  setIsVisible: React.Dispatch<React.SetStateAction<number>>,
+  page: number
 ) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const onThrottle = throttle(50, (entries: any) => {
+  const onThrottle = throttle(25, (entries: any) => {
     const [entry] = entries;
+
     if (entry.isIntersecting === true) {
-      setIsVisible(1);
+      setIsVisible((prev) => (prev !== page ? prev + 1 : prev));
     }
     console.log(entry.isIntersecting);
   });

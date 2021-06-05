@@ -17,8 +17,8 @@ const SliderImages: React.FC = () => {
     dispatch(fetchSlider(isVisible));
   }, [dispatch, isVisible]);
 
-  console.log("isVisible", isVisible);
-  console.log("items", items);
+  // console.log("isVisible", isVisible);
+  // console.log("items", items);
 
   const options: IOptionsSlider = {
     root: null,
@@ -26,7 +26,9 @@ const SliderImages: React.FC = () => {
     threshold: 1,
   };
 
-  const containerRef = useElementOnScreen(options, setIsVisible);
+  const containerRef = useElementOnScreen(options, setIsVisible, 3);
+
+  console.log(items.length);
 
   if (error) {
     return <h1>{error}</h1>;
@@ -36,18 +38,20 @@ const SliderImages: React.FC = () => {
     return (
       <Content>
         {items.map((item, index) => {
-          return (
-            <Item key={index}>
-              <img src={item.posterUrlPreview} alt={item.NameEn} />
-            </Item>
-          );
+          if (index === items.length - 3) {
+            return (
+              <Item key={index} ref={containerRef}>
+                <img src={item.posterUrlPreview} alt={item.NameEn} />
+              </Item>
+            );
+          } else {
+            return (
+              <Item key={index}>
+                <img src={item.posterUrlPreview} alt={item.NameEn} />
+              </Item>
+            );
+          }
         })}
-        <Item key="444" ref={containerRef}>
-          <img
-            src="https://3dnews.ru/assets/external/illustrations/2017/11/07/961183/google-logo-1200x630.jpg"
-            alt="1"
-          />
-        </Item>
       </Content>
     );
   }
