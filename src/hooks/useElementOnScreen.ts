@@ -9,13 +9,12 @@ export const useElementOnScreen = (
 ) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const onThrottle = throttle(25, (entries: any) => {
+  const onThrottle = throttle(40, (entries: any) => {
     const [entry] = entries;
 
     if (entry.isIntersecting === true) {
       setIsVisible((prev) => (prev !== page ? prev + 1 : prev));
     }
-    console.log(entry.isIntersecting);
   });
 
   const callbackFunction = useCallback(onThrottle, [onThrottle]);

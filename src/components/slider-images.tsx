@@ -10,8 +10,6 @@ const SliderImages: React.FC = () => {
   const [isVisible, setIsVisible] = useState<number>(0);
   const { error, loading, items } = useTypeSelector((state) => state.slider);
 
-  // console.log("number", number);
-
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchSlider(isVisible));
@@ -28,7 +26,7 @@ const SliderImages: React.FC = () => {
 
   const containerRef = useElementOnScreen(options, setIsVisible, 3);
 
-  console.log(items.length);
+  // console.log(items.length);
 
   if (error) {
     return <h1>{error}</h1>;
@@ -38,7 +36,7 @@ const SliderImages: React.FC = () => {
     return (
       <Content>
         {items.map((item, index) => {
-          if (index === items.length - 3) {
+          if (index === items.length - 2) {
             return (
               <Item key={index} ref={containerRef}>
                 <img src={item.posterUrlPreview} alt={item.NameEn} />
