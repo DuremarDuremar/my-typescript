@@ -33,7 +33,6 @@ export const fetchSlider = (n: number) => {
   return async (dispatch: Dispatch<DefaultAction>) => {
     try {
       dispatch({ type: DefaultActionTypes.FETCH_DEFAULT });
-      dispatch({ type: DefaultActionTypes.FETCH_DEFAULT_NUMBER, payload: n });
       const resArray = array[n].map((item) => {
         const res = axios.get(
           `https://kinopoiskapiunofficial.tech/api/v2.1/films/${item}`,

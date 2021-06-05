@@ -10,6 +10,8 @@ const SliderImages: React.FC = () => {
   const [isVisible, setIsVisible] = useState<number>(0);
   const { error, loading, items } = useTypeSelector((state) => state.slider);
 
+  // console.log("number", number);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchSlider(isVisible));
@@ -28,7 +30,7 @@ const SliderImages: React.FC = () => {
 
   if (error) {
     return <h1>{error}</h1>;
-  } else if (loading) {
+  } else if (!loading) {
     return <h1>...loading</h1>;
   } else {
     return (

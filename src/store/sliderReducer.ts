@@ -5,10 +5,9 @@ import {
 } from "../types/default";
 
 const initianalState: DefaultState = {
-  items: [],
   loading: false,
+  items: [],
   error: null,
-  number: 1,
 };
 
 export const sliderReducer = (
@@ -21,29 +20,20 @@ export const sliderReducer = (
         loading: true,
         error: null,
         items: state.items,
-        number: state.number,
       };
     case DefaultActionTypes.FETCH_DEFAULT_SUCCESS:
       return {
-        loading: false,
+        loading: true,
         error: null,
         items: [...state.items, ...action.payload],
-        number: state.number,
       };
     case DefaultActionTypes.FETCH_DEFAULT_ERROR:
       return {
-        loading: false,
+        loading: true,
         error: action.payload,
         items: [],
-        number: state.number,
       };
-    case DefaultActionTypes.FETCH_DEFAULT_NUMBER:
-      return {
-        loading: false,
-        error: null,
-        items: state.items,
-        number: action.payload,
-      };
+
     default:
       return state;
   }
