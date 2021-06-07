@@ -73,3 +73,16 @@ export const fetchSlider = (n: number) => {
     }
   };
 };
+
+export const fetchVideo = (id: number) => {
+  const res = axios.get(
+    `https://kinopoiskapiunofficial.tech/api/v2.1/films/${id}/videos`,
+    {
+      method: "GET",
+      headers: {
+        "X-API-KEY": "3624a818-0f9b-4117-91dd-3f6624d9d171",
+      },
+    }
+  );
+  return res;
+};

@@ -4,10 +4,11 @@ import { useTypeSelector } from "../hooks/useTypeSelector";
 import { useElementOnScreen } from "../hooks/useElementOnScreen";
 import { IOptionsSlider } from "../types/options";
 import { useDispatch } from "react-redux";
-import { fetchSlider } from "../store/actions";
+import { fetchSlider, fetchVideo } from "../store/actions";
 
 const SliderImages: React.FC = () => {
   const [isVisible, setIsVisible] = useState<number>(0);
+  const [idVideo, setIdVideo] = useState<number | null>(null);
   const { error, loading, items } = useTypeSelector((state) => state.slider);
 
   const dispatch = useDispatch();
@@ -15,8 +16,15 @@ const SliderImages: React.FC = () => {
     dispatch(fetchSlider(isVisible));
   }, [dispatch, isVisible]);
 
+  useEffect(() => {
+    if (idVideo) {
+      console.log(fetchVideo(idVideo));
+    }
+  }, [idVideo]);
+
   // console.log("isVisible", isVisible);
   // console.log("items", items);
+  console.log(idVideo);
 
   const options: IOptionsSlider = {
     root: null,
@@ -36,15 +44,19 @@ const SliderImages: React.FC = () => {
     return (
       <Content>
         {items.map((item, index) => {
-          if (index === items.length - 2) {
+          if (index === items.length - 4) {
             return (
-              <Item key={index} ref={containerRef}>
+              <Item
+                key={index}
+                ref={containerRef}
+                onClick={() => setIdVideo(item.filmId)}
+              >
                 <img src={item.posterUrlPreview} alt={item.NameEn} />
               </Item>
             );
           } else {
             return (
-              <Item key={index}>
+              <Item key={index} onClick={() => setIdVideo(item.filmId)}>
                 <img src={item.posterUrlPreview} alt={item.NameEn} />
               </Item>
             );

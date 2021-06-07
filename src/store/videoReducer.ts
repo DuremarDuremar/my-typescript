@@ -1,4 +1,4 @@
-import { VideoState } from "../types/video";
+import { VideoState, VideoAction } from "../types/video";
 
 const initianalState: VideoState = {
   loading: false,
@@ -7,8 +7,8 @@ const initianalState: VideoState = {
 };
 
 export const videoReducer = (
-  state = initianalState
-  // action: DefaultAction
+  state = initianalState,
+  action: VideoAction
 ): VideoState => {
   return state;
 };
