@@ -1,4 +1,5 @@
 import { DefaultActionTypes, DefaultAction } from "../types/default";
+import { VideoActionTypes, VideoAction } from "../types/video";
 import { Dispatch } from "redux";
 import axios from "axios";
 
@@ -75,14 +76,41 @@ export const fetchSlider = (n: number) => {
 };
 
 export const fetchVideo = (id: number) => {
-  const res = axios.get(
-    `https://kinopoiskapiunofficial.tech/api/v2.1/films/${id}/videos`,
-    {
-      method: "GET",
-      headers: {
-        "X-API-KEY": "3624a818-0f9b-4117-91dd-3f6624d9d171",
-      },
+  return async (dispatch: Dispatch<VideoAction>) => {
+    try {
+      dispatch({ type: VideoActionTypes.FETCH_VIDEO });
+      const res = axios
+        .get(
+          `https://kinopoiskapiunofficial.tech/api/v2.1/films/${id}/videos`,
+          {
+            method: "GET",
+            headers: {
+              "X-API-KEY": "3624a818-0f9b-4117-91dd-3f6624d9d171",
+            },
+          }
+        )
+        .then((res) => res.data.trailers[0]);
+
+      dispatch({
+        type: VideoActionTypes.FETCH_VIDEO_SUCCESS,
+        payload: await res,
+      });
+    } catch (e) {
+      dispatch({
+        type: VideoActionTypes.FETCH_VIDEO_ERROR,
+        payload: "ошибка",
+      });
     }
-  );
-  return res;
+  };
 };
+
+// const res = axios.get(
+//   `https://kinopoiskapiunofficial.tech/api/v2.1/films/${id}/videos`,
+//   {
+//     method: "GET",
+//     headers: {
+//       "X-API-KEY": "3624a818-0f9b-4117-91dd-3f6624d9d171",
+//     },
+//   }
+// );
+// return res;

@@ -1,21 +1,37 @@
 import React from "react";
+import { useTypeSelector } from "../hooks/useTypeSelector";
 
 function SliderVideo() {
-  // console.log(fetchVideo());
+  const { error, loading, trailer } = useTypeSelector((state) => state.video);
 
-  return (
-    <div>
+  // if (trailer) {
+  //   console.log(trailer.url.split("v/")[1]);
+  //   console.log(trailer.url.indexOf("="));
+  // }
+
+  const link = (url: string) => {
+    if (url.indexOf("=") > 0) {
+      return `https://www.youtube.com/embed/${trailer.url.split("=")[1]}`;
+    } else {
+      return `https://www.youtube.com/embed/${trailer.url.split("v/")[1]}`;
+    }
+  };
+
+  const tr = () => {
+    return (
       <iframe
         width="560"
         height="315"
-        src="https://www.youtube.com/embed/0IMz8d9Cby4"
+        src={link(trailer.url)}
         title="YouTube video player"
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
       ></iframe>
-    </div>
-  );
+    );
+  };
+
+  return <div>{trailer ? tr() : "777"}</div>;
 }
 
 export default SliderVideo;

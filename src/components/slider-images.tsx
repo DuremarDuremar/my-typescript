@@ -18,9 +18,9 @@ const SliderImages: React.FC = () => {
 
   useEffect(() => {
     if (idVideo) {
-      console.log(fetchVideo(idVideo));
+      dispatch(fetchVideo(idVideo));
     }
-  }, [idVideo]);
+  }, [dispatch, idVideo]);
 
   // console.log("isVisible", isVisible);
   // console.log("items", items);

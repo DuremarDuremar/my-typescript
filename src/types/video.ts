@@ -1,6 +1,6 @@
 export interface VideoState {
-  id: number | null;
   loading: boolean;
+  trailer: any | null;
   error: null | string;
 }
 
