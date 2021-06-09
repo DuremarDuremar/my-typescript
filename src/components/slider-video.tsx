@@ -1,13 +1,9 @@
 import React from "react";
 import { useTypeSelector } from "../hooks/useTypeSelector";
+import { Content } from "../styles/style_slider-video";
 
 function SliderVideo() {
   const { error, loading, trailer } = useTypeSelector((state) => state.video);
-
-  // if (trailer) {
-  //   console.log(trailer.url.split("v/")[1]);
-  //   console.log(trailer.url.indexOf("="));
-  // }
 
   const link = (url: string) => {
     if (url.indexOf("=") > 0) {
@@ -31,7 +27,13 @@ function SliderVideo() {
     );
   };
 
-  return <div>{trailer ? tr() : "777"}</div>;
+  if (error) {
+    return <h1>{error}</h1>;
+  } else if (!trailer && loading) {
+    return <Content>...loading</Content>;
+  } else {
+    return <Content>{trailer ? tr() : "select video"}</Content>;
+  }
 }
 
 export default SliderVideo;

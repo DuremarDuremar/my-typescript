@@ -7,7 +7,7 @@ import { useMediaQuery } from "react-responsive";
 
 const Main: React.FC = () => {
   const res1000 = useMediaQuery({ query: "(min-width: 1000px)" });
-  console.log(res1000);
+  // console.log(res1000);
 
   return (
     <Content>

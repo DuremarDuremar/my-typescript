@@ -24,7 +24,7 @@ const SliderImages: React.FC = () => {
 
   // console.log("isVisible", isVisible);
   // console.log("items", items);
-  console.log(idVideo);
+  // console.log(idVideo);
 
   const options: IOptionsSlider = {
     root: null,
@@ -34,7 +34,7 @@ const SliderImages: React.FC = () => {
 
   const containerRef = useElementOnScreen(options, setIsVisible, 3);
 
-  // console.log(items.length);
+  console.log(containerRef);
 
   if (error) {
     return <h1>{error}</h1>;
