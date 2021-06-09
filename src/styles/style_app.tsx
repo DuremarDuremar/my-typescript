@@ -39,6 +39,18 @@ input{
       -webkit-appearance: none;
       margin: 0;
     }
+
+
+section::-webkit-scrollbar {
+    height: 7px;
+    background-color: #f9f9fd;
+}
+section::-webkit-scrollbar-thumb {
+    background-color: #0F2027;
+}
+
+
+
 `;
 
 export const Content = styled.div`

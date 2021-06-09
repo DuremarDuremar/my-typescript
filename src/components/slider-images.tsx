@@ -11,6 +11,15 @@ const SliderImages: React.FC = () => {
   const [idVideo, setIdVideo] = useState<number | null>(null);
   const { error, loading, items } = useTypeSelector((state) => state.slider);
 
+  const horizontalScroll = (event: any) => {
+    const delta = Math.max(
+      -1,
+      Math.min(1, event.nativeEvent.wheelDelta || -event.nativeEvent.detail)
+    );
+    event.currentTarget.scrollLeft -= delta * 10;
+    // event.preventDefault();
+  };
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchSlider(isVisible));
@@ -42,7 +51,7 @@ const SliderImages: React.FC = () => {
     return <h1>...loading</h1>;
   } else {
     return (
-      <Content>
+      <Content onWheel={(event) => horizontalScroll(event)}>
         {items.map((item, index) => {
           if (index === items.length - 4) {
             return (

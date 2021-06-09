@@ -5,6 +5,9 @@ export const Content = styled.section`
   width: 80%;
   overflow: auto;
   margin: 0px auto;
+  :focus {
+    border: 2px solid red;
+  }
 `;
 export const Item = styled.div`
   border-right: 2px solid black;
