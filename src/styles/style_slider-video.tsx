@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
-export const Content = styled.section``;
+export const Content = styled.section`
+  transition: 0.5s;
+  transform: translateX(
+    ${({ style }) => (style === "entering" || style === "entered" ? 400 : 0)}px
+  );
+`;
 export const Panel = styled.div`
   display: flex;
   justify-content: center;

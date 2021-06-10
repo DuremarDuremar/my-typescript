@@ -35,7 +35,7 @@ const SliderImages: React.FC = () => {
 
   const containerRef = useElementOnScreen(options, setIsVisible, 3);
   const scrollRef: any = useHorizontalScroll();
-  console.log(scrollRef);
+  // console.log(scrollRef);
 
   if (error) {
     return <h1>{error}</h1>;

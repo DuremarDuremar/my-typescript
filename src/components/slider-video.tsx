@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useTypeSelector } from "../hooks/useTypeSelector";
 import { useDispatch } from "react-redux";
 import { Content, Panel, Trailer } from "../styles/style_slider-video";
 import { removeVideo } from "../store/actions";
+import { Transition } from "react-transition-group";
 import tv from "../assets/tv.svg";
 
-function SliderVideo() {
+const SliderVideo: React.FC = () => {
   const { error, loading, trailer } = useTypeSelector((state) => state.video);
   const dispatch = useDispatch();
+
+  const nodeRef = useRef(null);
 
   const link = (url: string) => {
     if (url.indexOf("=") > 0) {
@@ -31,6 +34,18 @@ function SliderVideo() {
     );
   };
 
+  const defaultStyle = {
+    transition: `opacity ${500}ms ease-in-out`,
+    opacity: 0,
+  };
+
+  const transitionStyles: { [id: string]: React.CSSProperties } = {
+    entering: { opacity: 1 },
+    entered: { opacity: 1 },
+    exiting: { opacity: 0 },
+    exited: { opacity: 0 },
+  };
+
   if (error) {
     return <h1>{error}</h1>;
   } else if (!trailer && loading) {
@@ -41,25 +56,34 @@ function SliderVideo() {
     );
   } else {
     return (
-      <Content>
-        {trailer ? (
-          <>
-            <Panel>
-              <i
-                className="fas fa-chevron-up fa-2x"
-                onClick={() => dispatch(removeVideo())}
-              ></i>
-            </Panel>
-            <Trailer>{tr()}</Trailer>
-          </>
-        ) : (
-          <Trailer>
-            <img src={tv}></img>
-          </Trailer>
+      <Transition nodeRef={nodeRef} in={loading} timeout={500}>
+        {(state: any) => (
+          <Content
+            style={{
+              ...defaultStyle,
+              ...transitionStyles[state],
+            }}
+          >
+            {trailer ? (
+              <>
+                <Panel>
+                  <i
+                    className="fas fa-chevron-up fa-2x"
+                    onClick={() => dispatch(removeVideo())}
+                  ></i>
+                </Panel>
+                <Trailer>{tr()}</Trailer>
+              </>
+            ) : (
+              <Trailer>
+                <img src={tv}></img>
+              </Trailer>
+            )}
+          </Content>
         )}
-      </Content>
+      </Transition>
     );
   }
-}
+};
 
 export default SliderVideo;
