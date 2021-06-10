@@ -1,6 +1,7 @@
 import React from "react";
 import { useTypeSelector } from "../hooks/useTypeSelector";
-import { Content } from "../styles/style_slider-video";
+import { Content, Panel, Trailer } from "../styles/style_slider-video";
+import tv from "../assets/tv.svg";
 
 function SliderVideo() {
   const { error, loading, trailer } = useTypeSelector((state) => state.video);
@@ -30,9 +31,20 @@ function SliderVideo() {
   if (error) {
     return <h1>{error}</h1>;
   } else if (!trailer && loading) {
-    return <Content>...loading</Content>;
+    return (
+      <Content>
+        <Trailer>...loading</Trailer>
+      </Content>
+    );
   } else {
-    return <Content>{trailer ? tr() : "select video"}</Content>;
+    return (
+      <Content>
+        <Panel>
+          <i className="fas fa-chevron-down fa-2x"></i>
+        </Panel>
+        <Trailer>{trailer ? tr() : <img src={tv}></img>}</Trailer>
+      </Content>
+    );
   }
 }
 

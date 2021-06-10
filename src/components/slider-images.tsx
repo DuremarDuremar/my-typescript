@@ -5,20 +5,12 @@ import { useElementOnScreen } from "../hooks/useElementOnScreen";
 import { IOptionsSlider } from "../types/options";
 import { useDispatch } from "react-redux";
 import { fetchSlider, fetchVideo } from "../store/actions";
+import { horizontalScroll } from "../utils/horizontalScroll";
 
 const SliderImages: React.FC = () => {
   const [isVisible, setIsVisible] = useState<number>(0);
   const [idVideo, setIdVideo] = useState<number | null>(null);
   const { error, loading, items } = useTypeSelector((state) => state.slider);
-
-  const horizontalScroll = (event: any) => {
-    const delta = Math.max(
-      -1,
-      Math.min(1, event.nativeEvent.wheelDelta || -event.nativeEvent.detail)
-    );
-    event.currentTarget.scrollLeft -= delta * 10;
-    // event.preventDefault();
-  };
 
   const dispatch = useDispatch();
   useEffect(() => {
