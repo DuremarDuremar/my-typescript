@@ -5,7 +5,7 @@ import { useElementOnScreen } from "../hooks/useElementOnScreen";
 import { IOptionsSlider } from "../types/options";
 import { useDispatch } from "react-redux";
 import { fetchSlider, fetchVideo } from "../store/actions";
-import { horizontalScroll } from "../utils/horizontalScroll";
+import { useHorizontalScroll } from "../hooks/useHorizontalScroll";
 
 const SliderImages: React.FC = () => {
   const [isVisible, setIsVisible] = useState<number>(0);
@@ -34,16 +34,16 @@ const SliderImages: React.FC = () => {
   };
 
   const containerRef = useElementOnScreen(options, setIsVisible, 3);
-
-  console.log(containerRef);
+  const scrollRef: any = useHorizontalScroll();
+  console.log(scrollRef);
 
   if (error) {
     return <h1>{error}</h1>;
   } else if (!loading) {
-    return <h1>...loading</h1>;
+    return <Content ref={scrollRef}>...loading</Content>;
   } else {
     return (
-      <Content onWheel={(event) => horizontalScroll(event)}>
+      <Content ref={scrollRef}>
         {items.map((item, index) => {
           if (index === items.length - 4) {
             return (

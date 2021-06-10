@@ -8,7 +8,7 @@ export const Panel = styled.div`
   width: 80%;
   border-right: 2px solid black;
   border-left: 2px solid black;
-  margin: 30px auto;
+  margin: 30px auto 0;
   i {
   }
 `;
@@ -16,7 +16,8 @@ export const Panel = styled.div`
 export const Trailer = styled.div`
   display: flex;
   justify-content: center;
+  margin-top: 30px;
   img {
-    width: 50%;
+    width: 200px;
   }
 `;

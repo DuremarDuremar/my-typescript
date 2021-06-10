@@ -27,7 +27,13 @@ export const videoReducer = (
       return {
         loading: true,
         error: action.payload,
-        trailer: {},
+        trailer: null,
+      };
+    case VideoActionTypes.VIDEO_REMOVE:
+      return {
+        loading: false,
+        error: null,
+        trailer: null,
       };
 
     default:

@@ -104,6 +104,13 @@ export const fetchVideo = (id: number) => {
   };
 };
 
+export const removeVideo = () => {
+  return {
+    type: VideoActionTypes.VIDEO_REMOVE,
+    payload: false,
+  };
+};
+
 // const res = axios.get(
 //   `https://kinopoiskapiunofficial.tech/api/v2.1/films/${id}/videos`,
 //   {

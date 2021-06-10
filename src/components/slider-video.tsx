@@ -1,10 +1,13 @@
 import React from "react";
 import { useTypeSelector } from "../hooks/useTypeSelector";
+import { useDispatch } from "react-redux";
 import { Content, Panel, Trailer } from "../styles/style_slider-video";
+import { removeVideo } from "../store/actions";
 import tv from "../assets/tv.svg";
 
 function SliderVideo() {
   const { error, loading, trailer } = useTypeSelector((state) => state.video);
+  const dispatch = useDispatch();
 
   const link = (url: string) => {
     if (url.indexOf("=") > 0) {
@@ -39,10 +42,21 @@ function SliderVideo() {
   } else {
     return (
       <Content>
-        <Panel>
-          <i className="fas fa-chevron-down fa-2x"></i>
-        </Panel>
-        <Trailer>{trailer ? tr() : <img src={tv}></img>}</Trailer>
+        {trailer ? (
+          <>
+            <Panel>
+              <i
+                className="fas fa-chevron-up fa-2x"
+                onClick={() => dispatch(removeVideo())}
+              ></i>
+            </Panel>
+            <Trailer>{tr()}</Trailer>
+          </>
+        ) : (
+          <Trailer>
+            <img src={tv}></img>
+          </Trailer>
+        )}
       </Content>
     );
   }
