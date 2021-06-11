@@ -1,11 +1,17 @@
 import styled from "styled-components";
 
 export const Content = styled.section`
-  transition: 0.5s;
-  transform: translateX(
-    ${({ style }) => (style === "entering" || style === "entered" ? 400 : 0)}px
-  );
+  position: relative;
+  transition: all 2s ease-in-out;
 `;
+
+export const transitionStyles: { [id: string]: React.CSSProperties } = {
+  entering: { backgroundColor: "#fff" },
+  entered: { backgroundColor: "yellow" },
+  exiting: { backgroundColor: "red " },
+  exited: { backgroundColor: "green" },
+};
+
 export const Panel = styled.div`
   display: flex;
   justify-content: center;
@@ -14,8 +20,7 @@ export const Panel = styled.div`
   border-right: 2px solid black;
   border-left: 2px solid black;
   margin: 30px auto 0;
-  i {
-  }
+  background-color: #fff;
 `;
 
 export const Trailer = styled.div`
