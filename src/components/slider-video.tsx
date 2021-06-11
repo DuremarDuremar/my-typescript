@@ -55,17 +55,17 @@ const SliderVideo: React.FC = () => {
           <>
             {trailer ? (
               <Content>
-                <Panel style={transitionStyles[state]}>
-                  <i
-                    className="fas fa-chevron-up fa-2x"
-                    onClick={() => {
-                      setAnimation(true);
-                      setTimeout(() => {
-                        setAnimation(false);
-                        dispatch(removeVideo());
-                      }, 1000);
-                    }}
-                  ></i>
+                <Panel
+                  style={transitionStyles[state]}
+                  onClick={() => {
+                    setAnimation(true);
+                    setTimeout(() => {
+                      setAnimation(false);
+                      dispatch(removeVideo());
+                    }, 1000);
+                  }}
+                >
+                  <i className="fas fa-chevron-up fa-2x"></i>
                 </Panel>
                 <Trailer style={transitionStyles[state]}>{tr()}</Trailer>
               </Content>

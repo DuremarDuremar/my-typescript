@@ -23,6 +23,7 @@ export const Panel = styled.div`
   border-left: 2px solid black;
   margin: 30px auto 0;
   background-color: #fff;
+  cursor: pointer;
 `;
 
 export const Trailer = styled.div`

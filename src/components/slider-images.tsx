@@ -20,12 +20,13 @@ const SliderImages: React.FC = () => {
   useEffect(() => {
     if (idVideo) {
       dispatch(fetchVideo(idVideo));
+      setIdVideo(null);
     }
   }, [dispatch, idVideo]);
 
   // console.log("isVisible", isVisible);
   // console.log("items", items);
-  // console.log(idVideo);
+  console.log(idVideo);
 
   const options: IOptionsSlider = {
     root: null,
