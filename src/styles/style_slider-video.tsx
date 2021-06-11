@@ -1,15 +1,17 @@
 import styled from "styled-components";
 
 export const Content = styled.section`
-  position: relative;
-  transition: all 2s ease-in-out;
+  div {
+    position: relative;
+    transition: all 0.6s ease-in-out;
+  }
 `;
 
 export const transitionStyles: { [id: string]: React.CSSProperties } = {
-  entering: { backgroundColor: "#fff" },
-  entered: { backgroundColor: "yellow" },
-  exiting: { backgroundColor: "red " },
-  exited: { backgroundColor: "green" },
+  entering: {},
+  entered: { transform: "translateY(-500px)", opacity: 0 },
+  exiting: {},
+  exited: {},
 };
 
 export const Panel = styled.div`

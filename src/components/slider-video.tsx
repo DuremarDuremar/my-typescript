@@ -50,12 +50,12 @@ const SliderVideo: React.FC = () => {
     );
   } else {
     return (
-      <Transition nodeRef={nodeRef} in={animation} timeout={500}>
+      <Transition nodeRef={nodeRef} in={animation} timeout={600}>
         {(state: any) => (
           <>
             {trailer ? (
-              <Content style={transitionStyles[state]}>
-                <Panel>
+              <Content>
+                <Panel style={transitionStyles[state]}>
                   <i
                     className="fas fa-chevron-up fa-2x"
                     onClick={() => {
@@ -63,14 +63,14 @@ const SliderVideo: React.FC = () => {
                       setTimeout(() => {
                         setAnimation(false);
                         dispatch(removeVideo());
-                      }, 8000);
+                      }, 1000);
                     }}
                   ></i>
                 </Panel>
-                <Trailer>{tr()}</Trailer>
+                <Trailer style={transitionStyles[state]}>{tr()}</Trailer>
               </Content>
             ) : (
-              <Content style={transitionStyles[state]}>
+              <Content>
                 <Trailer>
                   <img src={tv} alt="tv"></img>
                 </Trailer>

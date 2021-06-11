@@ -5,6 +5,8 @@ export const Content = styled.section`
   width: 80%;
   overflow: auto;
   margin: 0px auto;
+  position: relative;
+  z-index: 1;
   :focus {
     border: 2px solid red;
   }
