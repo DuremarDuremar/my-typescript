@@ -1,5 +1,5 @@
-import { DefaultActionTypes, DefaultAction } from "../types/default";
-import { VideoActionTypes, VideoAction } from "../types/video";
+import { DefaultActionTypes, DefaultAction } from "../../types/default";
+import { VideoActionTypes, VideoAction } from "../../types/video";
 import { Dispatch } from "redux";
 import axios from "axios";
 

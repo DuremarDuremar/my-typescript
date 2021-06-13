@@ -7,7 +7,7 @@ import {
   Panel,
   Trailer,
 } from "../styles/style_slider-video";
-import { removeVideo } from "../store/actions";
+import { removeVideo } from "../store/actions/actions";
 import { Transition } from "react-transition-group";
 import tv from "../assets/tv.svg";
 

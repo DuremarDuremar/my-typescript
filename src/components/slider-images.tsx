@@ -4,7 +4,7 @@ import { useTypeSelector } from "../hooks/useTypeSelector";
 import { useElementOnScreen } from "../hooks/useElementOnScreen";
 import { IOptionsSlider } from "../types/options";
 import { useDispatch } from "react-redux";
-import { fetchSlider, fetchVideo } from "../store/actions";
+import { fetchSlider, fetchVideo } from "../store/actions/actions";
 import { useHorizontalScroll } from "../hooks/useHorizontalScroll";
 
 const SliderImages: React.FC = () => {
