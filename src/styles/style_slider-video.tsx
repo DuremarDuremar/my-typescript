@@ -8,12 +8,21 @@ export const Content = styled.section`
 `;
 
 export const transitionStyles: { [id: string]: React.CSSProperties } = {
+  enter: {},
   entering: {},
-  entered: { transform: "translateY(-500px)", opacity: 0 },
+  entered: { transform: "translateY(-300px)", opacity: 0 },
   exiting: {},
   exited: {},
+  exit: {},
 };
-
+export const transitionTrailer: { [id: string]: React.CSSProperties } = {
+  enter: {},
+  entering: { backgroundColor: "red" },
+  entered: { backgroundColor: "yellow" },
+  exiting: { backgroundColor: "green" },
+  exited: { backgroundColor: "blue" },
+  exit: {},
+};
 export const Panel = styled.div`
   display: flex;
   justify-content: center;
@@ -30,6 +39,9 @@ export const Trailer = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 30px;
+  iframe {
+    /* opacity: 0.2; */
+  }
   img {
     width: 200px;
   }

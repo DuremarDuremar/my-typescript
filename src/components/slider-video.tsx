@@ -40,46 +40,50 @@ const SliderVideo: React.FC = () => {
     );
   };
 
-  if (error) {
-    return <h1>{error}</h1>;
-  } else if (!trailer && loading) {
-    return (
-      <Content>
-        <Trailer>...loading</Trailer>
-      </Content>
-    );
-  } else {
-    return (
-      <Transition nodeRef={nodeRef} in={animation} timeout={600}>
-        {(state: any) => (
-          <>
-            {trailer ? (
-              <Content>
-                <Panel
-                  style={transitionStyles[state]}
-                  onClick={() => {
-                    setAnimation(true);
-                    setTimeout(() => {
-                      setAnimation(false);
-                      dispatch(removeVideo());
-                    }, 1000);
-                  }}
-                >
-                  <i className="fas fa-chevron-up fa-2x"></i>
-                </Panel>
-                <Trailer style={transitionStyles[state]}>{tr()}</Trailer>
-              </Content>
-            ) : (
-              <Content>
-                <Trailer>
-                  <img src={tv} alt="tv"></img>
-                </Trailer>
-              </Content>
-            )}
-          </>
-        )}
-      </Transition>
-    );
-  }
+  const render = (state: any) => {
+    if (error) {
+      return <h1>{error}</h1>;
+    } else if (!trailer && loading) {
+      return (
+        <Content>
+          <Trailer>...loading</Trailer>
+        </Content>
+      );
+    } else {
+      return (
+        <>
+          {trailer ? (
+            <Content>
+              <Panel
+                style={transitionStyles[state]}
+                onClick={() => {
+                  setAnimation(true);
+                  setTimeout(() => {
+                    setAnimation(false);
+                    dispatch(removeVideo());
+                  }, 1600);
+                }}
+              >
+                <i className="fas fa-chevron-up fa-2x"></i>
+              </Panel>
+              <Trailer style={transitionStyles[state]}>{tr()}</Trailer>
+            </Content>
+          ) : (
+            <Content>
+              <Trailer>
+                <img src={tv} alt="tv"></img>
+              </Trailer>
+            </Content>
+          )}
+        </>
+      );
+    }
+  };
+
+  return (
+    <Transition nodeRef={nodeRef} in={animation} timeout={400} appear>
+      {(state: any) => render(state)}
+    </Transition>
+  );
 };
 export default SliderVideo;

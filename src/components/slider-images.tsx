@@ -26,7 +26,7 @@ const SliderImages: React.FC = () => {
 
   // console.log("isVisible", isVisible);
   // console.log("items", items);
-  console.log(idVideo);
+  // console.log(idVideo);
 
   const options: IOptionsSlider = {
     root: null,
