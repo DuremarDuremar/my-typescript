@@ -2,7 +2,7 @@ import {
   DefaultState,
   DefaultAction,
   DefaultActionTypes,
-} from "../types/default";
+} from "../../types/default";
 
 const initianalState: DefaultState = {
   loading: false,

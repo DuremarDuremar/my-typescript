@@ -1,4 +1,4 @@
-import { VideoState, VideoAction, VideoActionTypes } from "../types/video";
+import { VideoState, VideoAction, VideoActionTypes } from "../../types/video";
 
 const initianalState: VideoState = {
   loading: false,

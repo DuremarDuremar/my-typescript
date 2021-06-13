@@ -8,21 +8,12 @@ export const Content = styled.section`
 `;
 
 export const transitionStyles: { [id: string]: React.CSSProperties } = {
-  enter: {},
   entering: {},
   entered: { transform: "translateY(-300px)", opacity: 0 },
   exiting: {},
   exited: {},
-  exit: {},
 };
-export const transitionTrailer: { [id: string]: React.CSSProperties } = {
-  enter: {},
-  entering: { backgroundColor: "red" },
-  entered: { backgroundColor: "yellow" },
-  exiting: { backgroundColor: "green" },
-  exited: { backgroundColor: "blue" },
-  exit: {},
-};
+
 export const Panel = styled.div`
   display: flex;
   justify-content: center;
