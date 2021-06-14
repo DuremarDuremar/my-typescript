@@ -9,7 +9,7 @@ export const useElementOnScreen = (
 ) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const onThrottle = throttle(50, (entries: any) => {
+  const onThrottle = throttle(30, (entries: any) => {
     const [entry] = entries;
 
     if (entry.isIntersecting === true) {

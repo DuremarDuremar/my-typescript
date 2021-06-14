@@ -1,8 +1,9 @@
 import styled from "styled-components";
-
-export const Content = styled.section`
+import "styled-components";
+export const Content = styled.section<{ respons1000: boolean }>`
   display: flex;
-  width: 80%;
+  width: ${(props) => (props.respons1000 ? "990px" : "690px")};
+  /* width: 80%; */
   overflow: auto;
   margin: 0px auto;
   position: relative;
@@ -11,10 +12,13 @@ export const Content = styled.section`
     border: 2px solid red;
   }
 `;
-export const Item = styled.div`
+
+export const Item = styled.div<{ respons1000: boolean }>`
   border-right: 2px solid black;
-  min-width: 210px;
-  min-height: 230px;
+  min-width: ${(props) => (props.respons1000 ? "200px" : "136px")};
+  /* min-height: auto; */
+  /* min-width: 210px;
+  min-height: 230px; */
   cursor: pointer;
   img {
     width: 100%;
