@@ -30,7 +30,7 @@ const SliderImages: React.FC = () => {
   // console.log("isVisible", isVisible);
   // console.log("items", items);
   // console.log(idVideo);
-  console.log(dopLoading);
+  // console.log(dopLoading);
   const options: IOptionsSlider = {
     root: null,
     rootMargin: "0px",
@@ -39,7 +39,7 @@ const SliderImages: React.FC = () => {
 
   const containerRef = useElementOnScreen(options, setIsVisible, 3);
   const scrollRef: any = useHorizontalScroll();
-  console.log(containerRef);
+  // console.log(containerRef);
 
   if (error) {
     return <h1>{error}</h1>;
@@ -53,40 +53,25 @@ const SliderImages: React.FC = () => {
     return (
       <Content ref={scrollRef} respons1000={respons1000}>
         {items.map((item, index) => {
-          if (index === items.length - 3) {
-            return (
-              <Item
-                key={index}
-                ref={containerRef}
-                onClick={() => setIdVideo(item.filmId)}
+          return (
+            <Item
+              key={index}
+              ref={index === items.length - 3 ? containerRef : null}
+              respons1000={respons1000}
+            >
+              <Button
+                left
                 respons1000={respons1000}
-              >
-                <Button left>
-                  <i className="fas fa-video fa-3x"></i>
-                </Button>
-                <img src={item.posterUrlPreview} alt={item.NameEn} />
-                <Button>
-                  <i className="fas fa-file-import fa-3x"></i>
-                </Button>
-              </Item>
-            );
-          } else {
-            return (
-              <Item
-                key={index}
                 onClick={() => setIdVideo(item.filmId)}
-                respons1000={respons1000}
               >
-                <Button left>
-                  <i className="fas fa-video fa-3x"></i>
-                </Button>
-                <img src={item.posterUrlPreview} alt={item.NameEn} />
-                <Button>
-                  <i className="fas fa-file-import fa-3x"></i>
-                </Button>
-              </Item>
-            );
-          }
+                <i className="fas fa-video fa-3x"></i>
+              </Button>
+              <img src={item.posterUrlPreview} alt={item.NameEn} />
+              <Button respons1000={respons1000}>
+                <i className="fas fa-file-import fa-3x"></i>
+              </Button>
+            </Item>
+          );
         })}
         {dopLoading && <Spinner slider />}
       </Content>

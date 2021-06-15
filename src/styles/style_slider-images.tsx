@@ -38,19 +38,29 @@ export const Item = styled.div<{ respons1000: boolean }>`
     opacity: 0.4;
   }
   :hover button {
-    /* background-color: #3c3b3f; */
     color: #fff;
     z-index: 3;
   }
 `;
 
-export const Button = styled.button<{ left?: boolean }>`
+export const Button = styled.button<{ left?: boolean; respons1000: boolean }>`
   position: absolute;
   background-color: transparent;
   color: transparent;
   transition: all 0.8s ease-out;
-  left: ${(props) => (props.left ? "0" : "75%")};
-  top: 45%;
+  left: ${(props) =>
+    props.left && props.respons1000
+      ? "5%"
+      : !props.left && props.respons1000
+      ? "75%"
+      : "35%"};
+  top: ${(props) =>
+    !props.respons1000 && props.left
+      ? "10%"
+      : !props.respons1000 && !props.left
+      ? "70%"
+      : "45%"};
+
   :hover {
     border-radius: 50%;
     animation: ${pulse} 1s infinite;
