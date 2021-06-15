@@ -76,4 +76,5 @@ export const Content = styled.div`
   background-blend-mode: soft-light, screen;
   min-height: 100vh;
   max-width: 1300px;
+  width: 100%;
 `;

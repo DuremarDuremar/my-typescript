@@ -68,8 +68,6 @@ type SpinnerProps = {
 };
 
 const Spinner: React.FC<SpinnerProps> = ({ slider }) => {
-  console.log(slider);
-
   return (
     <IdsCss slider>
       <IdsDoubleRing>
