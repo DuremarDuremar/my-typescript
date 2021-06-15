@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Content = styled.section`
   div {
+    width: 560px;
     position: relative;
     transition: all 0.6s ease-in-out;
   }
@@ -18,7 +19,6 @@ export const Panel = styled.div`
   display: flex;
   justify-content: center;
   height: 30px;
-  width: 80%;
   border-right: 2px solid black;
   border-left: 2px solid black;
   margin: 30px auto 0;
@@ -29,10 +29,8 @@ export const Panel = styled.div`
 export const Trailer = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 30px;
-  iframe {
-    /* opacity: 0.2; */
-  }
+  /* width: 560px; */
+  margin: 30px auto 0;
   img {
     width: 200px;
   }

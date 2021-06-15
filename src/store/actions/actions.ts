@@ -43,9 +43,13 @@ const arraySlider: string[][] = [
   ],
 ];
 
-export const fetchSlider = (n: number) => {
+export const fetchSlider = (
+  n: number,
+  setDopLoading: (dopLoading: boolean) => void
+) => {
   return async (dispatch: Dispatch<DefaultAction>) => {
     try {
+      setDopLoading(true);
       dispatch({ type: DefaultActionTypes.FETCH_DEFAULT });
       const resArray = arraySlider[n].map((item) => {
         const res = axios.get(
@@ -63,6 +67,7 @@ export const fetchSlider = (n: number) => {
       dispatch({
         type: DefaultActionTypes.FETCH_DEFAULT_SUCCESS,
         payload: await Promise.all(resArray).then(function (values) {
+          setDopLoading(false);
           return values.map((item) => item.data.data);
         }),
       });

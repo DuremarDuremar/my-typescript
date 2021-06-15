@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { Content, Item } from "../styles/style_slider-images";
+import { Content, Item, Button } from "../styles/style_slider-images";
 import { useTypeSelector } from "../hooks/useTypeSelector";
 import { useElementOnScreen } from "../hooks/useElementOnScreen";
 import { IOptionsSlider } from "../types/options";
 import { useDispatch } from "react-redux";
 import { fetchSlider, fetchVideo } from "../store/actions/actions";
 import { useHorizontalScroll } from "../hooks/useHorizontalScroll";
+import Spinner from "../utils/spinner";
 
 const SliderImages: React.FC = () => {
   const [isVisible, setIsVisible] = useState<number>(0);
   const [idVideo, setIdVideo] = useState<number | null>(null);
+  const [dopLoading, setDopLoading] = useState(false);
   const { error, loading, items } = useTypeSelector((state) => state.slider);
   const { respons1000 } = useTypeSelector((state) => state.respons);
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchSlider(isVisible));
+    dispatch(fetchSlider(isVisible, setDopLoading));
   }, [dispatch, isVisible]);
 
   useEffect(() => {
@@ -28,7 +30,7 @@ const SliderImages: React.FC = () => {
   // console.log("isVisible", isVisible);
   // console.log("items", items);
   // console.log(idVideo);
-  // console.log(respons1000);
+  console.log(dopLoading);
   const options: IOptionsSlider = {
     root: null,
     rootMargin: "0px",
@@ -59,7 +61,13 @@ const SliderImages: React.FC = () => {
                 onClick={() => setIdVideo(item.filmId)}
                 respons1000={respons1000}
               >
+                <Button left>
+                  <i className="fas fa-video fa-3x"></i>
+                </Button>
                 <img src={item.posterUrlPreview} alt={item.NameEn} />
+                <Button>
+                  <i className="fas fa-file-import fa-3x"></i>
+                </Button>
               </Item>
             );
           } else {
@@ -69,11 +77,18 @@ const SliderImages: React.FC = () => {
                 onClick={() => setIdVideo(item.filmId)}
                 respons1000={respons1000}
               >
+                <Button left>
+                  <i className="fas fa-video fa-3x"></i>
+                </Button>
                 <img src={item.posterUrlPreview} alt={item.NameEn} />
+                <Button>
+                  <i className="fas fa-file-import fa-3x"></i>
+                </Button>
               </Item>
             );
           }
         })}
+        {dopLoading && <Spinner slider />}
       </Content>
     );
   }
