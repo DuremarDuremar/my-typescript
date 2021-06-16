@@ -14,6 +14,7 @@ import tv from "../assets/tv.svg";
 const SliderVideo: React.FC = () => {
   const [animation, setAnimation] = useState(false);
   const { error, loading, trailer } = useTypeSelector((state) => state.video);
+  const { respons715 } = useTypeSelector((state) => state.respons);
   const dispatch = useDispatch();
 
   const nodeRef = useRef(null);
@@ -29,8 +30,8 @@ const SliderVideo: React.FC = () => {
   const tr = () => {
     return (
       <iframe
-        width="560"
-        height="315"
+        width={respons715 ? "560" : "300"}
+        height={respons715 ? "315" : "190"}
         src={link(trailer.url)}
         title="YouTube video player"
         frameBorder="0"
@@ -45,7 +46,7 @@ const SliderVideo: React.FC = () => {
       return <h1>{error}</h1>;
     } else if (!trailer && loading) {
       return (
-        <Content>
+        <Content respons715={respons715}>
           <Trailer>...loading</Trailer>
         </Content>
       );
@@ -53,7 +54,7 @@ const SliderVideo: React.FC = () => {
       return (
         <>
           {trailer ? (
-            <Content>
+            <Content respons715={respons715}>
               <Panel
                 style={transitionStyles[state]}
                 onClick={() => {
@@ -69,7 +70,7 @@ const SliderVideo: React.FC = () => {
               <Trailer style={transitionStyles[state]}>{tr()}</Trailer>
             </Content>
           ) : (
-            <Content>
+            <Content respons715={respons715}>
               <Trailer>
                 <img src={tv} alt="tv"></img>
               </Trailer>

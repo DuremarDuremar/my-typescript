@@ -12,7 +12,7 @@ const Main: React.FC = () => {
   const res715 = useMediaQuery({ query: "(min-width: 715px)" });
   const dispatch = useDispatch();
 
-  console.log("res1000", res1000);
+  // console.log("res1000", res1000);
   console.log("res715", res715);
 
   useEffect(() => {

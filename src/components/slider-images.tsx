@@ -13,7 +13,7 @@ const SliderImages: React.FC = () => {
   const [idVideo, setIdVideo] = useState<number | null>(null);
   const [dopLoading, setDopLoading] = useState(false);
   const { error, loading, items } = useTypeSelector((state) => state.slider);
-  const { respons1000 } = useTypeSelector((state) => state.respons);
+  const { respons1000, respons715 } = useTypeSelector((state) => state.respons);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -45,13 +45,21 @@ const SliderImages: React.FC = () => {
     return <h1>{error}</h1>;
   } else if (!loading) {
     return (
-      <Content ref={scrollRef} respons1000={respons1000}>
+      <Content
+        ref={scrollRef}
+        respons1000={respons1000}
+        respons715={respons715}
+      >
         ...loading
       </Content>
     );
   } else {
     return (
-      <Content ref={scrollRef} respons1000={respons1000}>
+      <Content
+        ref={scrollRef}
+        respons1000={respons1000}
+        respons715={respons715}
+      >
         {items.map((item, index) => {
           return (
             <Item

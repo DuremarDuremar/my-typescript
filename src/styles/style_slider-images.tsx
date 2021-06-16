@@ -12,10 +12,14 @@ const pulse = keyframes` {
 	}
 }`;
 
-export const Content = styled.section<{ respons1000: boolean }>`
+export const Content = styled.section<{
+  respons1000: boolean;
+  respons715: boolean;
+}>`
   display: flex;
-  width: ${(props) => (props.respons1000 ? "990px" : "690px")};
-  /* width: 80%; */
+  max-width: ${(props) =>
+    props.respons1000 ? "990px" : props.respons715 ? "690px" : "408px"};
+  width: 100%;
   overflow: auto;
   margin: 0px auto;
   position: relative;

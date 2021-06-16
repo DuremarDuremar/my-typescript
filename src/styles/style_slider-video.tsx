@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-export const Content = styled.section`
+export const Content = styled.section<{ respons715: boolean }>`
   div {
-    width: 560px;
+    max-width: ${(props) => (props.respons715 ? "560px" : "315px")};
     position: relative;
     transition: all 0.6s ease-in-out;
   }
