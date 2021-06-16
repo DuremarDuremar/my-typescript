@@ -3,7 +3,7 @@ import { VideoActionTypes, VideoAction } from "../../types/video";
 import { Dispatch } from "redux";
 import axios from "axios";
 
-const arraySlider: string[][] = [
+const arrayTop: string[][] = [
   [
     "354",
     "195434",
@@ -43,6 +43,21 @@ const arraySlider: string[][] = [
   ],
 ];
 
+const arrayDirectors: string[][] = [
+  ["5890"],
+  ["12020", "12019"],
+  ["16550"],
+  ["10988"],
+  ["27407"],
+  ["15359"],
+  ["25080"],
+  ["16563"],
+  ["33008"],
+  ["22412"],
+  ["64249"],
+  ["185595"],
+];
+
 export const fetchSlider = (
   n: number,
   setDopLoading: (dopLoading: boolean) => void
@@ -51,7 +66,7 @@ export const fetchSlider = (
     try {
       setDopLoading(true);
       dispatch({ type: DefaultActionTypes.FETCH_DEFAULT });
-      const resArray = arraySlider[n].map((item) => {
+      const resArray = arrayTop[n].map((item) => {
         const res = axios.get(
           `https://kinopoiskapiunofficial.tech/api/v2.1/films/${item}`,
           {
@@ -108,6 +123,8 @@ export const fetchVideo = (id: number) => {
     }
   };
 };
+
+export const fetchDirectors = () => {};
 
 export const removeVideo = () => {
   return {

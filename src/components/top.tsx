@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from "react";
-import { Content, Item, Button } from "../styles/style_slider-images";
+import React, { FC, useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+
+import { Content, Item, Button } from "../styles/style_top";
 import { useTypeSelector } from "../hooks/useTypeSelector";
 import { useElementOnScreen } from "../hooks/useElementOnScreen";
 import { IOptionsSlider } from "../types/options";
-import { useDispatch } from "react-redux";
 import { fetchSlider, fetchVideo } from "../store/actions/actions";
 import { useHorizontalScroll } from "../hooks/useHorizontalScroll";
 import Spinner from "../utils/spinner";
 
-const SliderImages: React.FC = () => {
+const Top: FC = () => {
   const [isVisible, setIsVisible] = useState<number>(0);
   const [idVideo, setIdVideo] = useState<number | null>(null);
   const [dopLoading, setDopLoading] = useState(false);
-  const { error, loading, items } = useTypeSelector((state) => state.slider);
+  const { error, loading, items } = useTypeSelector((state) => state.top);
   const { respons1000, respons715 } = useTypeSelector((state) => state.respons);
 
   const dispatch = useDispatch();
@@ -87,4 +88,4 @@ const SliderImages: React.FC = () => {
   }
 };
 
-export default SliderImages;
+export default Top;

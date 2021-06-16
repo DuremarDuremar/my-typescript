@@ -1,17 +1,18 @@
 import React, { useState, useRef } from "react";
-import { useTypeSelector } from "../hooks/useTypeSelector";
 import { useDispatch } from "react-redux";
+import { Transition } from "react-transition-group";
+
+import { useTypeSelector } from "../hooks/useTypeSelector";
 import {
   Content,
   transitionStyles,
   Panel,
   Trailer,
-} from "../styles/style_slider-video";
+} from "../styles/style_video";
 import { removeVideo } from "../store/actions/actions";
-import { Transition } from "react-transition-group";
 import tv from "../assets/tv.svg";
 
-const SliderVideo: React.FC = () => {
+const Video: React.FC = () => {
   const [animation, setAnimation] = useState(false);
   const { error, loading, trailer } = useTypeSelector((state) => state.video);
   const { respons715 } = useTypeSelector((state) => state.respons);
@@ -83,4 +84,4 @@ const SliderVideo: React.FC = () => {
     </Transition>
   );
 };
-export default SliderVideo;
+export default Video;

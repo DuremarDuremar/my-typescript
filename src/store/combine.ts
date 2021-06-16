@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
-import { sliderReducer } from "./reducers/sliderReducer";
+import { topReducer } from "./reducers/topReducer";
 import { videoReducer } from "./reducers/videoReducer";
 import { responsReducer } from "./reducers/responsReducer";
 
 export const rootReducer = combineReducers({
-  slider: sliderReducer,
+  top: topReducer,
   video: videoReducer,
   respons: responsReducer,
 });

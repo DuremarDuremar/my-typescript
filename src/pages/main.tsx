@@ -3,8 +3,8 @@ import { useDispatch } from "react-redux";
 import { useMediaQuery } from "react-responsive";
 
 import Header from "../components/header";
-import SliderImages from "../components/slider-images";
-import SliderVideo from "../components/slider-video";
+import Top from "../components/top";
+import Video from "../components/video";
 import Directors from "../components/directors";
 import Search from "../components/search";
 import { Content } from "../styles/style_main";
@@ -26,8 +26,8 @@ const Main: React.FC = () => {
   return (
     <Content>
       <Header />
-      <SliderImages />
-      <SliderVideo />
+      <Top />
+      <Video />
       <Directors />
       <Search />
     </Content>
