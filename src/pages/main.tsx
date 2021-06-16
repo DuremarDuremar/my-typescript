@@ -8,12 +8,14 @@ import Video from "../components/video";
 import Directors from "../components/directors";
 import Search from "../components/search";
 import { Content } from "../styles/style_main";
+import { useTypeSelector } from "../hooks/useTypeSelector";
 import { respons1000, respons715 } from "../store/actions/res_actions";
 
 const Main: React.FC = () => {
   const res1000 = useMediaQuery({ query: "(min-width: 1000px)" });
   const res715 = useMediaQuery({ query: "(min-width: 715px)" });
   const dispatch = useDispatch();
+  const top = useTypeSelector((state) => state.top);
 
   // console.log("res1000", res1000);
   // console.log("res715", res715);
@@ -28,7 +30,7 @@ const Main: React.FC = () => {
       <Header />
       <Top />
       <Video />
-      <Directors />
+      {top.items.length > 0 ? <Directors /> : <p>loading...</p>}
       <Search />
     </Content>
   );

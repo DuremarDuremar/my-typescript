@@ -5,7 +5,7 @@ import { Content, Item, Button } from "../styles/style_top";
 import { useTypeSelector } from "../hooks/useTypeSelector";
 import { useElementOnScreen } from "../hooks/useElementOnScreen";
 import { IOptionsSlider } from "../types/options";
-import { fetchSlider, fetchVideo } from "../store/actions/actions";
+import { fetchTop, fetchVideo } from "../store/actions/actions";
 import { useHorizontalScroll } from "../hooks/useHorizontalScroll";
 import Spinner from "../utils/spinner";
 
@@ -18,7 +18,7 @@ const Top: FC = () => {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchSlider(isVisible, setDopLoading));
+    dispatch(fetchTop(isVisible, setDopLoading));
   }, [dispatch, isVisible]);
 
   useEffect(() => {
@@ -44,14 +44,14 @@ const Top: FC = () => {
 
   if (error) {
     return <h1>{error}</h1>;
-  } else if (!loading) {
+  } else if (items.length < 1 && loading) {
     return (
       <Content
         ref={scrollRef}
         respons1000={respons1000}
         respons715={respons715}
       >
-        ...loading
+        <Spinner />
       </Content>
     );
   } else {

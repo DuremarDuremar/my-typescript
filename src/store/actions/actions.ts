@@ -1,7 +1,9 @@
-import { DefaultActionTypes, DefaultAction } from "../../types/default";
-import { VideoActionTypes, VideoAction } from "../../types/video";
 import { Dispatch } from "redux";
 import axios from "axios";
+
+import { DefaultActionTypes, DefaultAction } from "../../types/default";
+import { VideoActionTypes, VideoAction } from "../../types/video";
+import { DirectorsActionTypes, DirectorsAction } from "../../types/directors";
 
 const arrayTop: string[][] = [
   [
@@ -43,22 +45,23 @@ const arrayTop: string[][] = [
   ],
 ];
 
-const arrayDirectors: string[][] = [
-  ["5890"],
-  ["12020", "12019"],
-  ["16550"],
-  ["10988"],
-  ["27407"],
-  ["15359"],
-  ["25080"],
-  ["16563"],
-  ["33008"],
-  ["22412"],
-  ["64249"],
-  ["185595"],
+const arrayDirectors: string[] = [
+  "5890",
+  "12020",
+  "12019",
+  "16550",
+  "10988",
+  "27407",
+  "15359",
+  "25080",
+  // ["16563"],
+  // ["33008"],
+  // ["22412"],
+  // ["64249"],
+  // ["185595"],
 ];
 
-export const fetchSlider = (
+export const fetchTop = (
   n: number,
   setDopLoading: (dopLoading: boolean) => void
 ) => {
@@ -124,7 +127,37 @@ export const fetchVideo = (id: number) => {
   };
 };
 
-export const fetchDirectors = () => {};
+export const fetchDirectors = () => {
+  return async (dispatch: Dispatch<DirectorsAction>) => {
+    try {
+      dispatch({ type: DirectorsActionTypes.FETCH_DIRECTORS });
+      const resArray = arrayDirectors.map((item) => {
+        const res = axios.get(
+          `https://kinopoiskapiunofficial.tech/api/v1/staff/${item}`,
+          {
+            method: "GET",
+            headers: {
+              "X-API-KEY": "3624a818-0f9b-4117-91dd-3f6624d9d171",
+            },
+          }
+        );
+
+        return res;
+      });
+      dispatch({
+        type: DirectorsActionTypes.FETCH_DIRECTORS_SUCCESS,
+        payload: await Promise.all(resArray).then(function (values) {
+          return values.map((item) => item.data);
+        }),
+      });
+    } catch (e) {
+      dispatch({
+        type: DirectorsActionTypes.FETCH_DIRECTORS_ERROR,
+        payload: "ошибка",
+      });
+    }
+  };
+};
 
 export const removeVideo = () => {
   return {
