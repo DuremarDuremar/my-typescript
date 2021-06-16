@@ -47,7 +47,9 @@ const SliderVideo: React.FC = () => {
     } else if (!trailer && loading) {
       return (
         <Content respons715={respons715}>
-          <Trailer>...loading</Trailer>
+          <Trailer>
+            <img src={tv} alt="tv"></img>
+          </Trailer>
         </Content>
       );
     } else {
@@ -69,13 +71,7 @@ const SliderVideo: React.FC = () => {
               </Panel>
               <Trailer style={transitionStyles[state]}>{tr()}</Trailer>
             </Content>
-          ) : (
-            <Content respons715={respons715}>
-              <Trailer>
-                <img src={tv} alt="tv"></img>
-              </Trailer>
-            </Content>
-          )}
+          ) : null}
         </>
       );
     }

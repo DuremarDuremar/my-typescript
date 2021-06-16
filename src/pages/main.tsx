@@ -1,11 +1,14 @@
 import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useMediaQuery } from "react-responsive";
+
 import Header from "../components/header";
 import SliderImages from "../components/slider-images";
 import SliderVideo from "../components/slider-video";
+import Directors from "../components/directors";
+import Search from "../components/search";
 import { Content } from "../styles/style_main";
-import { useDispatch } from "react-redux";
 import { respons1000, respons715 } from "../store/actions/res_actions";
-import { useMediaQuery } from "react-responsive";
 
 const Main: React.FC = () => {
   const res1000 = useMediaQuery({ query: "(min-width: 1000px)" });
@@ -13,7 +16,7 @@ const Main: React.FC = () => {
   const dispatch = useDispatch();
 
   // console.log("res1000", res1000);
-  console.log("res715", res715);
+  // console.log("res715", res715);
 
   useEffect(() => {
     dispatch(respons1000(res1000));
@@ -25,6 +28,8 @@ const Main: React.FC = () => {
       <Header />
       <SliderImages />
       <SliderVideo />
+      <Directors />
+      <Search />
     </Content>
   );
 };

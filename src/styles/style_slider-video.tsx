@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Content = styled.section<{ respons715: boolean }>`
+  grid-column: span 2 / auto;
   div {
     max-width: ${(props) => (props.respons715 ? "560px" : "315px")};
     position: relative;
