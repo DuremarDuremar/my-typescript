@@ -1,7 +1,7 @@
 import React, { useEffect, FC } from "react";
 import { useDispatch } from "react-redux";
 
-import { Content, Slider } from "../styles/style_directors";
+import { Content, Slider, Item } from "../styles/style_directors";
 import { useTypeSelector } from "../hooks/useTypeSelector";
 import { fetchDirectors } from "../store/actions/actions";
 
@@ -26,7 +26,12 @@ const Directors: FC = () => {
       <Content>
         <Slider>
           {items.map((item) => {
-            return <div key={item.personId}>{item.nameRu}</div>;
+            return (
+              <Item key={item.personId}>
+                <img src={item.posterUrl} alt={item.nameEn} />
+                <p>{item.nameRu}</p>
+              </Item>
+            );
           })}
         </Slider>
       </Content>
