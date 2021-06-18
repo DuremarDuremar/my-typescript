@@ -6,7 +6,7 @@ import Header from "../components/header";
 import Top from "../components/top";
 import Video from "../components/video";
 import Directors from "../components/directors";
-import Search from "../components/search";
+import Panorama from "../components/panorama";
 import { Content } from "../styles/style_main";
 import { useTypeSelector } from "../hooks/useTypeSelector";
 import { respons1000, respons715 } from "../store/actions/res_actions";
@@ -31,7 +31,7 @@ const Main: React.FC = () => {
       <Top />
       <Video />
       {top.items.length > 0 ? <Directors /> : <p>loading...</p>}
-      <Search />
+      <Panorama />
     </Content>
   );
 };

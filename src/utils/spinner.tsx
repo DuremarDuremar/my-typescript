@@ -23,14 +23,22 @@ const rotate_reverse = keyframes`
   }
 `;
 
-const IdsCss = styled.div<{ slider?: boolean }>`
-  margin: auto;
+const IdsCss = styled.div<{ top?: boolean; directors?: boolean }>`
+  margin: 0 auto;
   ${(props) =>
-    props.slider &&
+    props.top &&
     `
+
     position:fixed;
     left: 50%;
     transform: translateX(-50%);
+    `}
+  ${(props) =>
+    props.directors &&
+    `
+    position:fixed;
+    top: 50%;
+    transform: translateY(-50%);
     `}
 `;
 const IdsDoubleRing = styled.div`
@@ -64,12 +72,13 @@ const IdsDoubleRing = styled.div`
 `;
 
 type SpinnerProps = {
-  slider?: boolean;
+  top?: boolean;
+  directors?: boolean;
 };
 
-const Spinner: React.FC<SpinnerProps> = ({ slider }) => {
+const Spinner: React.FC<SpinnerProps> = ({ top, directors }) => {
   return (
-    <IdsCss slider>
+    <IdsCss top={top} directors={directors}>
       <IdsDoubleRing>
         <div></div>
         <div></div>

@@ -76,7 +76,7 @@ const Top: FC = () => {
             </Item>
           );
         })}
-        {dopLoading && <Spinner slider />}
+        {dopLoading && <Spinner top />}
       </Content>
     );
   }

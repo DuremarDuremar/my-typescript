@@ -16,7 +16,7 @@ export const Content = styled.section<{
   respons1000: boolean;
   respons715: boolean;
 }>`
-  grid-column: span 2 / auto;
+  grid-column: span 4 / auto;
   display: flex;
   max-width: ${(props) =>
     props.respons1000 ? "990px" : props.respons715 ? "690px" : "408px"};

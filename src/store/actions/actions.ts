@@ -126,9 +126,13 @@ export const fetchVideo = (id: number) => {
   };
 };
 
-export const fetchDirectors = (n: number) => {
+export const fetchDirectors = (
+  n: number,
+  setDopLoading: (dopLoading: boolean) => void
+) => {
   return async (dispatch: Dispatch<DefaultAction>) => {
     try {
+      setDopLoading(true);
       dispatch({ type: DefaultActionTypes.FETCH_DIRECTORS });
       const resArray = arrayDirectors.slice(n, n + 8).map((item) => {
         const res = axios.get(
@@ -146,6 +150,7 @@ export const fetchDirectors = (n: number) => {
       dispatch({
         type: DefaultActionTypes.FETCH_DIRECTORS_SUCCESS,
         payload: await Promise.all(resArray).then(function (values) {
+          setDopLoading(false);
           return values.map((item) => item.data);
         }),
       });
