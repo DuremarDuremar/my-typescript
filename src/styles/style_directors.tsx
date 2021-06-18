@@ -1,17 +1,37 @@
 import styled from "styled-components";
 
-export const Content = styled.section`
-  background-color: #fff;
+export const Content = styled.section<{ respons715: boolean }>`
   position: relative;
   margin-top: 40px;
   display: flex;
   justify-content: center;
   padding: 0 10px;
+  ${(props) =>
+    !props.respons715 &&
+    `
+    grid-column: span 4 / auto;
+    `}
 `;
-export const Slider = styled.div`
-  height: 450px;
-  overflow-y: auto;
+export const Slider = styled.div<{ respons715: boolean }>`
   border-top: 10px solid #0f2027;
+  ${(props) =>
+    props.respons715 &&
+    `
+    overflow-y: auto;
+    height: 450px;
+    `}
+
+  ${(props) =>
+    !props.respons715 &&
+    `
+    overflow-y: hidden;
+    overflow-x: auto;
+    height: 150px;
+    max-width: 600px;
+    display: flex;
+    align-items:center;
+    `}
+
   ::-webkit-scrollbar {
     width: 10px;
     background-color: #0f2027;
@@ -20,17 +40,34 @@ export const Slider = styled.div`
     background-color: #f9f9fd;
   }
 `;
-export const Item = styled.div`
-  width: 120px;
+export const Item = styled.div<{ respons715: boolean }>`
   background-color: #0f2027;
   color: #fff;
   cursor: pointer;
-  :not(:first-child) {
+  ${(props) =>
+    props.respons715 &&
+    `
+    width: 120px;
+    :not(:first-child) {
     padding-top: 10px;
-  }
-  :last-child {
+     }
+    :last-child {
     padding-bottom: 10px;
-  }
+     }
+    `}
+  ${(props) =>
+    !props.respons715 &&
+    `
+    min-width: 90px;
+    height: 120px;
+
+    :last-child {
+      border-right: 10px solid #0f2027;
+     }
+    `}
+
+
+  
 
   border-left: 10px solid #0f2027;
   p {

@@ -1,25 +1,14 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
 
-const rotate = keyframes`
+const rotate = (n: any) => keyframes`
  0% {
     -webkit-transform: rotate(0);
     transform: rotate(0);
   }
   100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-`;
-
-const rotate_reverse = keyframes`
- 0% {
-    -webkit-transform: rotate(0);
-    transform: rotate(0);
-  }
-  100% {
-    -webkit-transform: rotate(-360deg);
-    transform: rotate(-360deg);
+    -webkit-transform: rotate(${n});
+    transform: rotate(${n});
   }
 `;
 
@@ -36,6 +25,7 @@ const IdsCss = styled.div<{ top?: boolean; directors?: boolean }>`
   ${(props) =>
     props.directors &&
     `
+    left: 15%;
     position:fixed;
     top: 50%;
     transform: translateY(-50%);
@@ -57,16 +47,16 @@ const IdsDoubleRing = styled.div`
     border-radius: 50%;
     border: 8px solid #000;
     border-color: #00bc8c transparent #00bc8c transparent;
-    -webkit-animation: ${rotate} 1.5s linear infinite;
-    animation: ${rotate} 1.5s linear infinite;
+    -webkit-animation: ${rotate("360deg")} 1.5s linear infinite;
+    animation: ${rotate("360deg")} 1.5s linear infinite;
     :nth-child(2) {
       width: 140px;
       height: 140px;
       top: 30px;
       left: 30px;
       border-color: transparent #fff transparent #fff;
-      -webkit-animation: ${rotate_reverse} 1.5s linear infinite;
-      animation: ${rotate_reverse} 1.5s linear infinite;
+      -webkit-animation: ${rotate("-360deg")} 1.5s linear infinite;
+      animation: ${rotate("-360deg")} 1.5s linear infinite;
     }
   }
 `;

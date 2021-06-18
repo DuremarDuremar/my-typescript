@@ -34,7 +34,7 @@ const Top: FC = () => {
 
   const containerRef = useElementOnScreen(setIsVisible, 3, "top");
   const scrollRef: any = useHorizontalScroll();
-  // console.log(containerRef);
+  console.log("top", scrollRef);
 
   if (error) {
     return <h1>{error}</h1>;

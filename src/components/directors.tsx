@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { Content, Slider, Item } from "../styles/style_directors";
 import { useTypeSelector } from "../hooks/useTypeSelector";
 import { useElementOnScreen } from "../hooks/useElementOnScreen";
+import { useHorizontalScroll } from "../hooks/useHorizontalScroll";
 import { fetchDirectors } from "../store/actions/actions";
 import Spinner from "../utils/spinner";
 
@@ -11,6 +12,7 @@ const Directors: FC = () => {
   const [isVisible, setIsVisible] = useState<number>(0);
   const [dopLoading, setDopLoading] = useState(false);
   const { error, loading, items } = useTypeSelector((state) => state.directors);
+  const { respons715 } = useTypeSelector((state) => state.respons);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -20,25 +22,33 @@ const Directors: FC = () => {
   }, [dispatch, isVisible]);
 
   const containerRef = useElementOnScreen(setIsVisible, 8, "directors");
+  const scrollRef: any = useHorizontalScroll();
 
-  // console.log(isVisible);
+  console.log("dir", scrollRef);
 
   if (error) {
     return <h1>{error}</h1>;
   } else if (items.length < 1 && loading) {
-    return <Content>Loading...</Content>;
+    return (
+      <Content respons715={respons715}>
+        <Slider respons715={respons715} ref={!respons715 ? scrollRef : null}>
+          <Spinner />
+        </Slider>
+      </Content>
+    );
   } else {
     return (
-      <Content>
-        <Slider>
+      <Content respons715={respons715}>
+        <Slider respons715={respons715} ref={!respons715 ? scrollRef : null}>
           {items.map((item, index) => {
             return (
               <Item
                 key={index}
                 ref={index === items.length - 2 ? containerRef : null}
+                respons715={respons715}
               >
                 <img src={item.posterUrl} alt={item.nameEn} />
-                <p>{item.nameRu}</p>
+                {respons715 && <p>{item.nameRu}</p>}
               </Item>
             );
           })}
