@@ -5,7 +5,7 @@ import { throttle } from "throttle-debounce-ts";
 export const useElementOnScreen = (
   options: IOptionsSlider,
   setIsVisible: React.Dispatch<React.SetStateAction<number>>,
-  page: number
+  page?: number
 ) => {
   const containerRef = useRef<HTMLDivElement>(null);
 

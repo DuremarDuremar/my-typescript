@@ -1,10 +1,10 @@
 import {
-  DirectorsState,
-  DirectorsAction,
-  DirectorsActionTypes,
-} from "../../types/directors";
+  DefaultState,
+  DefaultAction,
+  DefaultActionTypes,
+} from "../../types/default";
 
-const initianalState: DirectorsState = {
+const initianalState: DefaultState = {
   loading: false,
   items: [],
   error: null,
@@ -12,22 +12,22 @@ const initianalState: DirectorsState = {
 
 export const directorsReducer = (
   state = initianalState,
-  action: DirectorsAction
-): DirectorsState => {
+  action: DefaultAction
+): DefaultState => {
   switch (action.type) {
-    case DirectorsActionTypes.FETCH_DIRECTORS:
+    case DefaultActionTypes.FETCH_DIRECTORS:
       return {
         loading: true,
         error: null,
         items: state.items,
       };
-    case DirectorsActionTypes.FETCH_DIRECTORS_SUCCESS:
+    case DefaultActionTypes.FETCH_DIRECTORS_SUCCESS:
       return {
         loading: true,
         error: null,
         items: [...state.items, ...action.payload],
       };
-    case DirectorsActionTypes.FETCH_DIRECTORS_ERROR:
+    case DefaultActionTypes.FETCH_DIRECTORS_ERROR:
       return {
         loading: true,
         error: action.payload,

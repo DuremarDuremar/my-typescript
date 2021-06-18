@@ -3,7 +3,6 @@ import axios from "axios";
 
 import { DefaultActionTypes, DefaultAction } from "../../types/default";
 import { VideoActionTypes, VideoAction } from "../../types/video";
-import { DirectorsActionTypes, DirectorsAction } from "../../types/directors";
 
 const arrayTop: string[][] = [
   [
@@ -54,11 +53,11 @@ const arrayDirectors: string[] = [
   "27407",
   "15359",
   "25080",
-  // ["16563"],
-  // ["33008"],
-  // ["22412"],
-  // ["64249"],
-  // ["185595"],
+  "16563",
+  "33008",
+  "22412",
+  "64249",
+  "185595",
 ];
 
 export const fetchTop = (
@@ -128,10 +127,10 @@ export const fetchVideo = (id: number) => {
 };
 
 export const fetchDirectors = () => {
-  return async (dispatch: Dispatch<DirectorsAction>) => {
+  return async (dispatch: Dispatch<DefaultAction>) => {
     try {
-      dispatch({ type: DirectorsActionTypes.FETCH_DIRECTORS });
-      const resArray = arrayDirectors.map((item) => {
+      dispatch({ type: DefaultActionTypes.FETCH_DIRECTORS });
+      const resArray = arrayDirectors.slice(0, 8).map((item) => {
         const res = axios.get(
           `https://kinopoiskapiunofficial.tech/api/v1/staff/${item}`,
           {
@@ -145,14 +144,14 @@ export const fetchDirectors = () => {
         return res;
       });
       dispatch({
-        type: DirectorsActionTypes.FETCH_DIRECTORS_SUCCESS,
+        type: DefaultActionTypes.FETCH_DIRECTORS_SUCCESS,
         payload: await Promise.all(resArray).then(function (values) {
           return values.map((item) => item.data);
         }),
       });
     } catch (e) {
       dispatch({
-        type: DirectorsActionTypes.FETCH_DIRECTORS_ERROR,
+        type: DefaultActionTypes.FETCH_DIRECTORS_ERROR,
         payload: "ошибка",
       });
     }
