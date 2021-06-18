@@ -3,18 +3,23 @@ import { useDispatch } from "react-redux";
 
 import { Content, Slider, Item } from "../styles/style_directors";
 import { useTypeSelector } from "../hooks/useTypeSelector";
+import { useElementOnScreen } from "../hooks/useElementOnScreen";
 import { fetchDirectors } from "../store/actions/actions";
 
 const Directors: FC = () => {
-  const { error, loading, items } = useTypeSelector((state) => state.directors);
   const [isVisible, setIsVisible] = useState<number>(0);
+  const { error, loading, items } = useTypeSelector((state) => state.directors);
   const dispatch = useDispatch();
 
   useEffect(() => {
     setTimeout(() => {
-      dispatch(fetchDirectors());
+      dispatch(fetchDirectors(isVisible));
     }, 800);
-  }, [dispatch]);
+  }, [dispatch, isVisible]);
+
+  const containerRef = useElementOnScreen(setIsVisible, 8, "directors");
+
+  console.log(isVisible);
 
   if (error) {
     return <h1>{error}</h1>;
@@ -24,9 +29,12 @@ const Directors: FC = () => {
     return (
       <Content>
         <Slider>
-          {items.map((item) => {
+          {items.map((item, index) => {
             return (
-              <Item key={item.personId}>
+              <Item
+                key={item.personId}
+                ref={index === items.length - 2 ? containerRef : null}
+              >
                 <img src={item.posterUrl} alt={item.nameEn} />
                 <p>{item.nameRu}</p>
               </Item>

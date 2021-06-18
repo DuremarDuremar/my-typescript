@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { Content, Item, Button } from "../styles/style_top";
 import { useTypeSelector } from "../hooks/useTypeSelector";
 import { useElementOnScreen } from "../hooks/useElementOnScreen";
-import { IOptionsSlider } from "../types/options";
 import { fetchTop, fetchVideo } from "../store/actions/actions";
 import { useHorizontalScroll } from "../hooks/useHorizontalScroll";
 import Spinner from "../utils/spinner";
@@ -32,13 +31,8 @@ const Top: FC = () => {
   // console.log("items", items);
   // console.log(idVideo);
   // console.log(dopLoading);
-  const options: IOptionsSlider = {
-    root: null,
-    rootMargin: "0px",
-    threshold: 0.9,
-  };
 
-  const containerRef = useElementOnScreen(options, setIsVisible, 3);
+  const containerRef = useElementOnScreen(setIsVisible, 3, "top");
   const scrollRef: any = useHorizontalScroll();
   // console.log(containerRef);
 

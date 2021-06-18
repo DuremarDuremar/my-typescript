@@ -126,11 +126,11 @@ export const fetchVideo = (id: number) => {
   };
 };
 
-export const fetchDirectors = () => {
+export const fetchDirectors = (n: number) => {
   return async (dispatch: Dispatch<DefaultAction>) => {
     try {
       dispatch({ type: DefaultActionTypes.FETCH_DIRECTORS });
-      const resArray = arrayDirectors.slice(0, 8).map((item) => {
+      const resArray = arrayDirectors.slice(n, n + 8).map((item) => {
         const res = axios.get(
           `https://kinopoiskapiunofficial.tech/api/v1/staff/${item}`,
           {

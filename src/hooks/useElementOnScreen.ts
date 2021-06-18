@@ -1,11 +1,18 @@
 import { useRef, useEffect, useCallback } from "react";
-import { IOptionsSlider } from "../types/options";
 import { throttle } from "throttle-debounce-ts";
 
+import { IOptionsSlider } from "../types/options";
+
+const options: IOptionsSlider = {
+  root: null,
+  rootMargin: "0px",
+  threshold: 0.9,
+};
+
 export const useElementOnScreen = (
-  options: IOptionsSlider,
   setIsVisible: React.Dispatch<React.SetStateAction<number>>,
-  page?: number
+  page?: number,
+  component?: string
 ) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -13,7 +20,11 @@ export const useElementOnScreen = (
     const [entry] = entries;
 
     if (entry.isIntersecting === true) {
-      setIsVisible((prev) => (prev !== page ? prev + 1 : prev));
+      if (component === "top") {
+        setIsVisible((prev) => (prev !== page ? prev + 1 : prev));
+      } else {
+        setIsVisible((prev) => (prev !== page ? prev + 8 : prev));
+      }
     }
   });
 
@@ -32,7 +43,7 @@ export const useElementOnScreen = (
         observer.unobserve(observerRefValue);
       }
     };
-  }, [callbackFunction, containerRef, options]);
+  }, [callbackFunction, containerRef]);
 
   return containerRef;
 };
