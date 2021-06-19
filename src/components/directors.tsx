@@ -29,7 +29,7 @@ const Directors: FC = () => {
     return <h1>{error}</h1>;
   } else if (items.length < 1 && loading) {
     return (
-      <Content respons715={respons715} move={video.loading ? true : false}>
+      <Content respons715={respons715} move={video.loading}>
         <Slider respons715={respons715} ref={!respons715 ? scrollRef : null}>
           <Spinner />
         </Slider>
@@ -37,7 +37,7 @@ const Directors: FC = () => {
     );
   } else {
     return (
-      <Content respons715={respons715} move={video.loading ? true : false}>
+      <Content respons715={respons715} move={video.loading}>
         <Slider respons715={respons715} ref={!respons715 ? scrollRef : null}>
           {items.map((item, index) => {
             return (

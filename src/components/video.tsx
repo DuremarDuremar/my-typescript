@@ -65,7 +65,7 @@ const Video: React.FC = () => {
                   setTimeout(() => {
                     setAnimation(false);
                     dispatch(removeVideo());
-                  }, 1600);
+                  }, 1000);
                 }}
               >
                 <i className="fas fa-chevron-up fa-2x"></i>
