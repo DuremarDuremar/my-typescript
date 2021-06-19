@@ -1,7 +1,17 @@
 import styled from "styled-components";
 
-export const Content = styled.section<{ respons715: boolean }>`
+export const Content = styled.section<{ respons715: boolean; exit?: boolean }>`
   grid-column: span 4 / auto;
+  min-height: 325px;
+  ${(props) =>
+    props.exit &&
+    `
+    position: relative;
+    transform: translateY(-360px);
+    z-index:-1;
+    opacity: 0;
+    `}
+
   div {
     max-width: ${(props) => (props.respons715 ? "560px" : "315px")};
     position: relative;

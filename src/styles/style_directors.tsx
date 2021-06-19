@@ -1,12 +1,15 @@
 import styled from "styled-components";
 import { pulse } from "./style_app";
 
-export const Content = styled.section<{ respons715: boolean }>`
+export const Content = styled.section<{ respons715: boolean; move: boolean }>`
   position: relative;
   margin-top: 40px;
   display: flex;
   justify-content: center;
   padding: 0 10px;
+  transition: all 0.3s ease-in-out;
+  transform: ${(props) =>
+    props.move ? "translateY(0)" : "translateY(-280px)"};
   ${(props) =>
     !props.respons715 &&
     `
@@ -66,9 +69,6 @@ export const Item = styled.div<{ respons715: boolean }>`
       border-right: 10px solid #0f2027;
      }
     `}
-
-
-  
 
   border-left: 10px solid #0f2027;
   p {

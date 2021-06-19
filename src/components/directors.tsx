@@ -12,6 +12,7 @@ const Directors: FC = () => {
   const [isVisible, setIsVisible] = useState<number>(0);
   const [dopLoading, setDopLoading] = useState(false);
   const { error, loading, items } = useTypeSelector((state) => state.directors);
+  const video = useTypeSelector((state) => state.video);
   const { respons715 } = useTypeSelector((state) => state.respons);
   const dispatch = useDispatch();
 
@@ -28,7 +29,7 @@ const Directors: FC = () => {
     return <h1>{error}</h1>;
   } else if (items.length < 1 && loading) {
     return (
-      <Content respons715={respons715}>
+      <Content respons715={respons715} move={video.loading ? true : false}>
         <Slider respons715={respons715} ref={!respons715 ? scrollRef : null}>
           <Spinner />
         </Slider>
@@ -36,7 +37,7 @@ const Directors: FC = () => {
     );
   } else {
     return (
-      <Content respons715={respons715}>
+      <Content respons715={respons715} move={video.loading ? true : false}>
         <Slider respons715={respons715} ref={!respons715 ? scrollRef : null}>
           {items.map((item, index) => {
             return (

@@ -72,7 +72,9 @@ const Video: React.FC = () => {
               </Panel>
               <Trailer style={transitionStyles[state]}>{tr()}</Trailer>
             </Content>
-          ) : null}
+          ) : (
+            <Content respons715={respons715} exit></Content>
+          )}
         </>
       );
     }
