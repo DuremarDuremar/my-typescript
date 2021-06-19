@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from "react";
+import { FC, useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import { Content, Item, Button } from "../styles/style_top";
@@ -34,7 +34,6 @@ const Top: FC = () => {
 
   const containerRef = useElementOnScreen(setIsVisible, 3, "top");
   const scrollRef: any = useHorizontalScroll();
-  console.log("top", scrollRef);
 
   if (error) {
     return <h1>{error}</h1>;

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { pulse } from "./style_app";
 
 export const Content = styled.section<{ respons715: boolean }>`
   position: relative;
@@ -18,7 +19,7 @@ export const Slider = styled.div<{ respons715: boolean }>`
     props.respons715 &&
     `
     overflow-y: auto;
-    height: 450px;
+    height: 445px;
     `}
 
   ${(props) =>
@@ -77,5 +78,11 @@ export const Item = styled.div<{ respons715: boolean }>`
   img {
     width: 100%;
     height: 100%;
+    transition: all 0.3s ease-out;
+
+    :hover {
+      animation: ${pulse("10px", "30px")} 1s infinite;
+      border-radius: 60%;
+    }
   }
 `;

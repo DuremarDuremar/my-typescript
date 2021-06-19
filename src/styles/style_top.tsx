@@ -1,16 +1,5 @@
-import styled, { keyframes } from "styled-components";
-
-const pulse = keyframes` {
-	0% {
-		box-shadow: 0 0 0 0 rgba(255, 239, 186, 0.4);
-	}
-	70% {
-		box-shadow: 0 0 10px 10px rgba(255, 239, 186, 0.6);
-	}
-	100% {
-		box-shadow: 0 0 3px 10px rgba(255, 239, 186, 0.8);
-	}
-}`;
+import styled from "styled-components";
+import { pulse } from "./style_app";
 
 export const Content = styled.section<{
   respons1000: boolean;
@@ -68,6 +57,6 @@ export const Button = styled.button<{ left?: boolean; respons1000: boolean }>`
 
   :hover {
     border-radius: 50%;
-    animation: ${pulse} 1s infinite;
+    animation: ${pulse("10px", "10px")} 1s infinite;
   }
 `;

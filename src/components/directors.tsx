@@ -24,8 +24,6 @@ const Directors: FC = () => {
   const containerRef = useElementOnScreen(setIsVisible, 8, "directors");
   const scrollRef: any = useHorizontalScroll();
 
-  console.log("dir", scrollRef);
-
   if (error) {
     return <h1>{error}</h1>;
   } else if (items.length < 1 && loading) {

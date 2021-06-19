@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle, keyframes } from "styled-components";
 
 export const Global = createGlobalStyle`
 * {
@@ -56,8 +56,6 @@ section::-webkit-scrollbar-thumb {
     background-color: #0F2027;
 }
 
-
-
 `;
 
 export const Content = styled.div`
@@ -78,3 +76,15 @@ export const Content = styled.div`
   max-width: 1300px;
   width: 100%;
 `;
+
+export const pulse = (a: any, b?: any) => keyframes` {
+	0% {
+		box-shadow: 0 0 0 0 rgba(255, 239, 186, 0.4);
+	}
+	70% {
+		box-shadow: 0 0 ${a} ${a} rgba(255, 239, 186, 0.6);
+	}
+	100% {
+		box-shadow: 0 0 ${a} ${a} rgba(255, 239, 186, 0.8);
+	}
+}`;
