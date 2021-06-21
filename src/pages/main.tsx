@@ -17,6 +17,7 @@ const Main: React.FC = () => {
   const dispatch = useDispatch();
   const top = useTypeSelector((state) => state.top);
   const video = useTypeSelector((state) => state.video);
+  const directors = useTypeSelector((state) => state.directors);
   // console.log("res1000", res1000);
   // console.log("res715", res715);
 
@@ -31,7 +32,7 @@ const Main: React.FC = () => {
       <Top />
       <Video />
       {top.items.length > 0 ? <Directors /> : <p>loading...</p>}
-      <Panorama />
+      {directors.items.length > 0 ? <Panorama /> : <p>loading...</p>}
     </Content>
   );
 };

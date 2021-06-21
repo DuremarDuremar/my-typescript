@@ -163,6 +163,39 @@ export const fetchDirectors = (
   };
 };
 
+// export const fetchSearch = (
+//   n: string,
+
+// ) => {
+
+//   return async (dispatch: Dispatch<DefaultAction>) => {
+//     try {
+//       dispatch({ type: DefaultActionTypes.FETCH_DIRECTORS });
+//       const res = axios.get(
+//         `https://kinopoiskapiunofficial.tech/api/v1/staff/${item}`,
+//         {
+//           method: "GET",
+//           headers: {
+//             "X-API-KEY": "3624a818-0f9b-4117-91dd-3f6624d9d171",
+//           },
+//         }
+//       );
+//       dispatch({
+//         type: DefaultActionTypes.FETCH_DIRECTORS_SUCCESS
+//         payload: await Promise.all(res).then(function (values) {
+//           setDopLoading(false);
+//           return values.map((item) => item.data);
+//         }),
+//       })
+//     } catch (e) {
+//       dispatch({
+//         type: DefaultActionTypes.FETCH_DIRECTORS_ERROR,
+//         payload: "ошибка",
+//       });
+//     }
+//   };
+// };
+
 export const removeVideo = () => {
   return {
     type: VideoActionTypes.VIDEO_REMOVE,
@@ -170,13 +203,15 @@ export const removeVideo = () => {
   };
 };
 
-// const res = axios.get(
-//   `https://kinopoiskapiunofficial.tech/api/v2.1/films/${id}/videos`,
-//   {
-//     method: "GET",
-//     headers: {
-//       "X-API-KEY": "3624a818-0f9b-4117-91dd-3f6624d9d171",
-//     },
-//   }
-// );
-// return res;
+export const fetchSearch = () => {
+  const res = axios.get(
+    `https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=безумный_макс&page=1`,
+    {
+      method: "GET",
+      headers: {
+        "X-API-KEY": "3624a818-0f9b-4117-91dd-3f6624d9d171",
+      },
+    }
+  );
+  return res;
+};
