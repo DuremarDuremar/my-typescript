@@ -17,11 +17,12 @@ export const Content = styled.section<{ respons715: boolean; move: boolean }>`
     `}
 `;
 export const Slider = styled.div<{ respons715: boolean }>`
-  border-top: 10px solid #0f2027;
   ${(props) =>
     props.respons715 &&
     `
+    
     overflow-y: auto;
+    overflow-x: hidden;
     height: 445px;
     `}
 
@@ -58,6 +59,10 @@ export const Item = styled.div<{ respons715: boolean }>`
     :last-child {
     padding-bottom: 10px;
      }
+    :first-child {
+    border-top: 10px solid #0f2027;
+     }
+
     `}
   ${(props) =>
     !props.respons715 &&

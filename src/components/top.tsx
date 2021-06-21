@@ -35,50 +35,46 @@ const Top: FC = () => {
   const containerRef = useElementOnScreen(setIsVisible, 3, "top");
   const scrollRef: any = useHorizontalScroll();
 
-  if (error) {
-    return <h1>{error}</h1>;
-  } else if (items.length < 1 && loading) {
-    return (
-      <Content
-        ref={scrollRef}
-        respons1000={respons1000}
-        respons715={respons715}
-      >
-        <Spinner />
-      </Content>
-    );
-  } else {
-    return (
-      <Content
-        ref={scrollRef}
-        respons1000={respons1000}
-        respons715={respons715}
-      >
-        {items.map((item, index) => {
-          return (
-            <Item
-              key={index}
-              ref={index === items.length - 3 ? containerRef : null}
-              respons1000={respons1000}
-            >
-              <Button
-                left
+  const render = () => {
+    if (error) {
+      return <h1>{error}</h1>;
+    } else if (items.length < 1 && loading) {
+      return <Spinner />;
+    } else {
+      return (
+        <>
+          {items.map((item, index) => {
+            return (
+              <Item
+                key={index}
+                ref={index === items.length - 3 ? containerRef : null}
                 respons1000={respons1000}
-                onClick={() => setIdVideo(item.filmId)}
               >
-                <i className="fas fa-video fa-3x"></i>
-              </Button>
-              <img src={item.posterUrlPreview} alt={item.NameEn} />
-              <Button respons1000={respons1000}>
-                <i className="fas fa-file-import fa-3x"></i>
-              </Button>
-            </Item>
-          );
-        })}
-        {dopLoading && <Spinner top />}
-      </Content>
-    );
-  }
+                <Button
+                  left
+                  respons1000={respons1000}
+                  onClick={() => setIdVideo(item.filmId)}
+                >
+                  <i className="fas fa-video fa-3x"></i>
+                </Button>
+                <img src={item.posterUrlPreview} alt={item.NameEn} />
+                <Button respons1000={respons1000}>
+                  <i className="fas fa-file-import fa-3x"></i>
+                </Button>
+              </Item>
+            );
+          })}
+          {dopLoading && <Spinner top />}
+        </>
+      );
+    }
+  };
+
+  return (
+    <Content ref={scrollRef} respons1000={respons1000} respons715={respons715}>
+      {render()}
+    </Content>
+  );
 };
 
 export default Top;

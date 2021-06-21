@@ -10,7 +10,8 @@ export const Content = styled.section<{
   max-width: ${(props) =>
     props.respons1000 ? "990px" : props.respons715 ? "690px" : "408px"};
   width: 100%;
-  overflow: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
   margin: 0px auto;
   position: relative;
   z-index: 1;

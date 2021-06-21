@@ -16,7 +16,7 @@ const Main: React.FC = () => {
   const res715 = useMediaQuery({ query: "(min-width: 715px)" });
   const dispatch = useDispatch();
   const top = useTypeSelector((state) => state.top);
-
+  const video = useTypeSelector((state) => state.video);
   // console.log("res1000", res1000);
   // console.log("res715", res715);
 
@@ -26,7 +26,7 @@ const Main: React.FC = () => {
   }, [res1000, res715, dispatch]);
 
   return (
-    <Content>
+    <Content move={video.loading}>
       <Header />
       <Top />
       <Video />
