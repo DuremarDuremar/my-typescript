@@ -14,7 +14,7 @@ export const Content = styled.section<{ respons715: boolean; move: boolean }>`
     `}
 `;
 
-export const Search = styled.div`
+export const Search = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;
