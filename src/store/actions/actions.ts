@@ -196,22 +196,39 @@ export const fetchDirectors = (
 //   };
 // };
 
+export const fetchSearch = (name: string) => {
+  return async (dispatch: Dispatch<DefaultAction>) => {
+    try {
+      dispatch({ type: DefaultActionTypes.FETCH_PANORAMA });
+      console.log("44444");
+      const res = axios
+        .get(
+          `https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=${name}&page=1`,
+          {
+            method: "GET",
+            headers: {
+              "X-API-KEY": "3624a818-0f9b-4117-91dd-3f6624d9d171",
+            },
+          }
+        )
+        .then((res) => res.data.films.slice(0, 5));
+
+      dispatch({
+        type: DefaultActionTypes.FETCH_PANORAMA_SUCCESS,
+        payload: await res,
+      });
+    } catch (e) {
+      dispatch({
+        type: DefaultActionTypes.FETCH_PANORAMA_ERROR,
+        payload: "ошибка",
+      });
+    }
+  };
+};
+
 export const removeVideo = () => {
   return {
     type: VideoActionTypes.VIDEO_REMOVE,
     payload: false,
   };
-};
-
-export const fetchSearch = () => {
-  const res = axios.get(
-    `https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=безумный_макс&page=1`,
-    {
-      method: "GET",
-      headers: {
-        "X-API-KEY": "3624a818-0f9b-4117-91dd-3f6624d9d171",
-      },
-    }
-  );
-  return res;
 };

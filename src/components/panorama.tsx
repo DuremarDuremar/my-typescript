@@ -1,6 +1,8 @@
 import { FC, useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useDebounce } from "use-debounce";
+
 import { Content, Search, Items, Item } from "../styles/style_panorama";
 import { useTypeSelector } from "../hooks/useTypeSelector";
 import { fetchSearch } from "../store/actions/actions";
@@ -10,12 +12,12 @@ const Panorama: FC = () => {
   const [text, setText] = useState("");
   const { respons715 } = useTypeSelector((state) => state.respons);
   const video = useTypeSelector((state) => state.video);
-
-  const [value] = useDebounce(text, 500);
+  const dispatch = useDispatch();
+  const [value] = useDebounce(text, 600);
 
   type Inputs = {
     search: string;
-    searchRequired?: string;
+    // searchRequired?: string;
   };
 
   const {
@@ -28,7 +30,9 @@ const Panorama: FC = () => {
 
   useEffect(() => {
     setValue("search", value);
-    handleSubmit((data) => console.log("data", data))();
+    if (value.length > 2) {
+      handleSubmit((data) => dispatch(fetchSearch(data.search)))();
+    }
   }, [value, setValue, handleSubmit]);
 
   return (
