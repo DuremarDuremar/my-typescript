@@ -1,15 +1,17 @@
 import { FC, useState, useEffect } from "react";
-import { useForm, Controller } from "react-hook-form";
-import { debounce } from "debounce";
+import { useForm } from "react-hook-form";
+import { useDebounce } from "use-debounce";
 import { Content, Search, Items, Item } from "../styles/style_panorama";
 import { useTypeSelector } from "../hooks/useTypeSelector";
 import { fetchSearch } from "../store/actions/actions";
 
 const Panorama: FC = () => {
   const [opt, setOpt] = useState(true);
-  // const [value, setValue] = useState("");
+  const [text, setText] = useState("");
   const { respons715 } = useTypeSelector((state) => state.respons);
   const video = useTypeSelector((state) => state.video);
+
+  const [value] = useDebounce(text, 500);
 
   type Inputs = {
     search: string;
@@ -17,24 +19,18 @@ const Panorama: FC = () => {
   };
 
   const {
-    register,
     handleSubmit,
     watch,
     setValue,
-    getValues,
-    reset,
     formState: { errors },
   } = useForm<Inputs>({ defaultValues: { search: "" } });
   console.log(watch("search"));
-  // console.log(handleSubmit);
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     console.log(fetchSearch());
-  //   }, 1800);
-  // }, []);
+  useEffect(() => {
+    setValue("search", value);
+    handleSubmit((data) => console.log("data", data))();
+  }, [value, setValue, handleSubmit]);
 
-  // const red = debounce(setOpt, 800);
   return (
     <Content respons715={respons715} move={video.loading}>
       <Search>
@@ -42,24 +38,22 @@ const Panorama: FC = () => {
           className="fas fa-caret-left fa-2x"
           onClick={() => {
             setOpt(!opt);
-            reset({ search: "" });
+            setText("");
           }}
         ></i>
+
         <input
           placeholder={opt ? "film" : "director"}
+          value={text}
           onChange={(e) => {
-            setValue("search", e.target.value);
-            handleSubmit((data) => console.log("data", data))();
+            setText(e.target.value);
           }}
         />
         <i
           className="fas fa-caret-right fa-2x"
           onClick={() => {
             setOpt(!opt);
-            setValue("search", "", {
-              // shouldValidate: true,
-              // shouldDirty: true,
-            });
+            setText("");
           }}
         ></i>
       </Search>
