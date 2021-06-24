@@ -35,9 +35,11 @@ export const Items = styled.div`
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 10px;
 `;
-export const Item = styled.div`
-  border: 1px solid black;
-  cursor: pointer;
+export const Item = styled.div<{ not?: boolean }>`
+  border: ${(props) => (props.not ? "none" : "1px solid black")};
+  cursor: ${(props) => (props.not ? "default" : "pointer")};
+  /* border: 1px solid black;
+  cursor: pointer; */
   div {
     text-align: center;
   }

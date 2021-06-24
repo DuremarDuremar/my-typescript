@@ -42,58 +42,73 @@ const Panorama: FC = () => {
     }
   }, [value, setValue, handleSubmit, dispatch]);
 
+  const content = (
+    <>
+      <Search>
+        <i
+          className="fas fa-caret-left fa-2x"
+          onClick={() => {
+            setText("");
+          }}
+        ></i>
+
+        <input
+          placeholder={opt ? "film" : "director"}
+          value={text}
+          onChange={(e) => {
+            setText(e.target.value);
+          }}
+        />
+        <i
+          className="fas fa-caret-right fa-2x"
+          onClick={() => {
+            setText("");
+          }}
+        ></i>
+      </Search>
+
+      <Items>
+        {items.map((item, index) => {
+          if (item.filmId === "not_found") {
+            return (
+              <Item key={index} not>
+                <div>
+                  <i className="fas fa-hashtag fa-4x"></i>
+                  <p>
+                    {item.nameRu}
+                    <br />
+                    {item.nameEn}
+                  </p>
+                </div>
+              </Item>
+            );
+          } else {
+            return (
+              <Item key={index}>
+                <img src={item.posterUrlPreview} alt={item.nameEn} />
+                <div>
+                  <p>
+                    {item.nameRu}
+                    <br />
+                    {item.nameEn}
+                  </p>
+                  <p>{item.year}</p>
+                </div>
+              </Item>
+            );
+          }
+        })}
+      </Items>
+    </>
+  );
+
   const render = () => {
     if (error) {
       return <h1>{error}</h1>;
     } else if (items.length < 1 && loading) {
       return <Spinner />;
     } else {
-      return (
-        <>
-          <Search>
-            <i
-              className="fas fa-caret-left fa-2x"
-              onClick={() => {
-                setOpt(!opt);
-                setText("");
-              }}
-            ></i>
-
-            <input
-              placeholder={opt ? "film" : "director"}
-              value={text}
-              onChange={(e) => {
-                setText(e.target.value);
-              }}
-            />
-            <i
-              className="fas fa-caret-right fa-2x"
-              onClick={() => {
-                setOpt(!opt);
-                setText("");
-              }}
-            ></i>
-          </Search>
-
-          <Items>
-            {items.map((item, index) => {
-              return (
-                <Item key={index}>
-                  <img src={item.posterUrlPreview} alt={item.nameEn} />
-                  <div>
-                    <p>
-                      {item.nameRu}
-                      <br />
-                      {item.nameEn}
-                    </p>
-                    <p>{item.year}</p>
-                  </div>
-                </Item>
-              );
-            })}
-          </Items>
-        </>
-      );
+      return content;
     }
   };
   return (

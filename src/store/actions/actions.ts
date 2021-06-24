@@ -4,6 +4,14 @@ import axios from "axios";
 import { DefaultActionTypes, DefaultAction } from "../../types/default";
 import { VideoActionTypes, VideoAction } from "../../types/video";
 
+const noFilm = [
+  {
+    filmId: "not_found",
+    nameRu: "не найдено",
+    nameEn: "not found",
+  },
+];
+
 const arrayTop: string[][] = [
   [
     "354",
@@ -210,7 +218,11 @@ export const fetchSearch = (name: string) => {
             },
           }
         )
-        .then((res) => res.data.films.slice(0, 6));
+        .then((res) =>
+          res.data.films.slice(0, 6).length > 0
+            ? res.data.films.slice(0, 6)
+            : noFilm
+        );
 
       dispatch({
         type: DefaultActionTypes.FETCH_PANORAMA_SUCCESS,
