@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const Content = styled.section<{ respons715: boolean; move: boolean }>`
   grid-column: span 3 / auto;
   margin-top: 40px;
-  background-color: yellow;
   transition: all 0.3s ease-in-out;
   transform: ${(props) =>
     props.move ? "translateY(0)" : "translateY(-280px)"};
@@ -31,5 +30,21 @@ export const Search = styled.form`
     cursor: pointer;
   }
 `;
-export const Items = styled.div``;
-export const Item = styled.div``;
+export const Items = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+`;
+export const Item = styled.div`
+  border: 1px solid black;
+  cursor: pointer;
+  div {
+    text-align: center;
+  }
+  img {
+    width: 140px;
+    height: 220px;
+    display: block;
+    margin: 0px auto;
+  }
+`;

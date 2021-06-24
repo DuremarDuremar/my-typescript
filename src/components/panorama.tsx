@@ -7,11 +7,13 @@ import { Content, Search, Items, Item } from "../styles/style_panorama";
 import { useTypeSelector } from "../hooks/useTypeSelector";
 import { fetchSearch } from "../store/actions/actions";
 import { removePanorama } from "../store/actions/actions";
+import Spinner from "../utils/spinner";
 
 const Panorama: FC = () => {
   const [opt, setOpt] = useState(true);
   const [text, setText] = useState("");
   const { respons715 } = useTypeSelector((state) => state.respons);
+  const { loading, error, items } = useTypeSelector((state) => state.panorama);
   const video = useTypeSelector((state) => state.video);
   const dispatch = useDispatch();
   const [value] = useDebounce(text, 1500);
@@ -40,34 +42,63 @@ const Panorama: FC = () => {
     }
   }, [value, setValue, handleSubmit, dispatch]);
 
+  const render = () => {
+    if (error) {
+      return <h1>{error}</h1>;
+    } else if (items.length < 1 && loading) {
+      return <Spinner />;
+    } else {
+      return (
+        <>
+          <Search>
+            <i
+              className="fas fa-caret-left fa-2x"
+              onClick={() => {
+                setOpt(!opt);
+                setText("");
+              }}
+            ></i>
+
+            <input
+              placeholder={opt ? "film" : "director"}
+              value={text}
+              onChange={(e) => {
+                setText(e.target.value);
+              }}
+            />
+            <i
+              className="fas fa-caret-right fa-2x"
+              onClick={() => {
+                setOpt(!opt);
+                setText("");
+              }}
+            ></i>
+          </Search>
+
+          <Items>
+            {items.map((item, index) => {
+              return (
+                <Item key={index}>
+                  <img src={item.posterUrlPreview} alt={item.nameEn} />
+                  <div>
+                    <p>
+                      {item.nameRu}
+                      <br />
+                      {item.nameEn}
+                    </p>
+                    <p>{item.year}</p>
+                  </div>
+                </Item>
+              );
+            })}
+          </Items>
+        </>
+      );
+    }
+  };
   return (
     <Content respons715={respons715} move={video.loading}>
-      <Search>
-        <i
-          className="fas fa-caret-left fa-2x"
-          onClick={() => {
-            setOpt(!opt);
-            setText("");
-          }}
-        ></i>
-
-        <input
-          placeholder={opt ? "film" : "director"}
-          value={text}
-          onChange={(e) => {
-            setText(e.target.value);
-          }}
-        />
-        <i
-          className="fas fa-caret-right fa-2x"
-          onClick={() => {
-            setOpt(!opt);
-            setText("");
-          }}
-        ></i>
-      </Search>
-
-      <Items></Items>
+      {render()}
     </Content>
   );
 };

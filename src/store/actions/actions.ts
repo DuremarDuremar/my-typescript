@@ -210,7 +210,7 @@ export const fetchSearch = (name: string) => {
             },
           }
         )
-        .then((res) => res.data.films.slice(0, 5));
+        .then((res) => res.data.films.slice(0, 6));
 
       dispatch({
         type: DefaultActionTypes.FETCH_PANORAMA_SUCCESS,
