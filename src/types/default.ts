@@ -14,6 +14,7 @@ export enum DefaultActionTypes {
   FETCH_PANORAMA = "FETCH_PANORAMA",
   FETCH_PANORAMA_SUCCESS = "FETCH_PANORAMA_SUCCESS",
   FETCH_PANORAMA_ERROR = "FETCH_PANORAMA_ERROR",
+  PANORAMA_REMOVE = "PANORAMA_REMOVE",
 }
 
 interface FetchDefaultAction {
@@ -52,6 +53,10 @@ interface FetchPanoramaErrorAction {
   payload: string;
 }
 
+interface FetchPanoramaRemoveAction {
+  type: DefaultActionTypes.PANORAMA_REMOVE;
+}
+
 export type DefaultAction =
   | FetchDefaultAction
   | FetchDefaultSuccessAction
@@ -61,4 +66,5 @@ export type DefaultAction =
   | FetchDirectorsErrorAction
   | FetchPanoramaAction
   | FetchPanoramaSuccessAction
-  | FetchPanoramaErrorAction;
+  | FetchPanoramaErrorAction
+  | FetchPanoramaRemoveAction;

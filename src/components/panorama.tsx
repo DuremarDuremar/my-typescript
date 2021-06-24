@@ -6,6 +6,7 @@ import { useDebounce } from "use-debounce";
 import { Content, Search, Items, Item } from "../styles/style_panorama";
 import { useTypeSelector } from "../hooks/useTypeSelector";
 import { fetchSearch } from "../store/actions/actions";
+import { removePanorama } from "../store/actions/actions";
 
 const Panorama: FC = () => {
   const [opt, setOpt] = useState(true);
@@ -13,11 +14,10 @@ const Panorama: FC = () => {
   const { respons715 } = useTypeSelector((state) => state.respons);
   const video = useTypeSelector((state) => state.video);
   const dispatch = useDispatch();
-  const [value] = useDebounce(text, 600);
+  const [value] = useDebounce(text, 1500);
 
   type Inputs = {
     search: string;
-    // searchRequired?: string;
   };
 
   const {
@@ -26,14 +26,19 @@ const Panorama: FC = () => {
     setValue,
     formState: { errors },
   } = useForm<Inputs>({ defaultValues: { search: "" } });
-  console.log(watch("search"));
+  // console.log(watch("search"));
+
+  console.log("text", text);
 
   useEffect(() => {
     setValue("search", value);
+
     if (value.length > 2) {
+      dispatch(removePanorama());
+      setText("");
       handleSubmit((data) => dispatch(fetchSearch(data.search)))();
     }
-  }, [value, setValue, handleSubmit]);
+  }, [value, setValue, handleSubmit, dispatch]);
 
   return (
     <Content respons715={respons715} move={video.loading}>

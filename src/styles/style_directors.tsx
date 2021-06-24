@@ -20,7 +20,6 @@ export const Slider = styled.div<{ respons715: boolean }>`
   ${(props) =>
     props.respons715 &&
     `
-    
     overflow-y: auto;
     overflow-x: hidden;
     height: 445px;
@@ -39,6 +38,7 @@ export const Slider = styled.div<{ respons715: boolean }>`
 
   ::-webkit-scrollbar {
     width: 10px;
+    height: 8px;
     background-color: #0f2027;
   }
   ::-webkit-scrollbar-thumb {

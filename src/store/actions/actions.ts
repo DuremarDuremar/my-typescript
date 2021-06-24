@@ -200,7 +200,6 @@ export const fetchSearch = (name: string) => {
   return async (dispatch: Dispatch<DefaultAction>) => {
     try {
       dispatch({ type: DefaultActionTypes.FETCH_PANORAMA });
-      console.log("44444");
       const res = axios
         .get(
           `https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=${name}&page=1`,
@@ -230,5 +229,10 @@ export const removeVideo = () => {
   return {
     type: VideoActionTypes.VIDEO_REMOVE,
     payload: false,
+  };
+};
+export const removePanorama = () => {
+  return {
+    type: DefaultActionTypes.PANORAMA_REMOVE,
   };
 };

@@ -33,7 +33,12 @@ export const panoramaReducer = (
         error: action.payload,
         items: [],
       };
-
+    case DefaultActionTypes.PANORAMA_REMOVE:
+      return {
+        loading: true,
+        error: null,
+        items: [],
+      };
     default:
       return state;
   }
