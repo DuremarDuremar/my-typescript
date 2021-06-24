@@ -25,20 +25,18 @@ const Directors: FC = () => {
   const containerRef = useElementOnScreen(setIsVisible, 8, "directors");
   const scrollRef: any = useHorizontalScroll();
 
-  if (error) {
-    return <h1>{error}</h1>;
-  } else if (items.length < 1 && loading) {
-    return (
-      <Content respons715={respons715} move={video.loading}>
-        <Slider respons715={respons715} ref={!respons715 ? scrollRef : null}>
+  const render = () => {
+    if (error) {
+      return <h1>{error}</h1>;
+    } else if (items.length < 1 && loading) {
+      return (
+        <>
           <Spinner />
-        </Slider>
-      </Content>
-    );
-  } else {
-    return (
-      <Content respons715={respons715} move={video.loading}>
-        <Slider respons715={respons715} ref={!respons715 ? scrollRef : null}>
+        </>
+      );
+    } else {
+      return (
+        <>
           {items.map((item, index) => {
             return (
               <Item
@@ -52,10 +50,18 @@ const Directors: FC = () => {
             );
           })}
           {dopLoading && <Spinner directors />}
-        </Slider>
-      </Content>
-    );
-  }
+        </>
+      );
+    }
+  };
+
+  return (
+    <Content respons715={respons715} move={video.loading}>
+      <Slider respons715={respons715} ref={!respons715 ? scrollRef : null}>
+        {render()}
+      </Slider>
+    </Content>
+  );
 };
 
 export default Directors;
