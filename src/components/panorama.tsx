@@ -2,6 +2,7 @@ import { FC, useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useDebounce } from "use-debounce";
+import { Link } from "react-router-dom";
 
 import {
   Content,
@@ -77,6 +78,7 @@ const Panorama: FC = () => {
           <Items>
             {items.length > 0 ? (
               items.map((item, index) => {
+                let link = `/${item.filmId}`;
                 if (item.filmId === "not_found") {
                   return (
                     <Item key={index} not respons1000={respons1000}>
@@ -102,9 +104,11 @@ const Panorama: FC = () => {
                         </p>
                         <p>{item.year}</p>
                       </div>
-                      <PanoramaButton respons1000={respons1000}>
-                        <i className="fas fa-file-import fa-3x"></i>
-                      </PanoramaButton>
+                      <Link to={link}>
+                        <PanoramaButton respons1000={respons1000}>
+                          <i className="fas fa-file-import fa-3x"></i>
+                        </PanoramaButton>
+                      </Link>
                     </Item>
                   );
                 }

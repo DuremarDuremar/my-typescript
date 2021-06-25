@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import { FC, useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { Transition } from "react-transition-group";
 
@@ -12,7 +12,7 @@ import {
 import { removeVideo } from "../store/actions/actions";
 import tv from "../assets/tv.svg";
 
-const Video: React.FC = () => {
+const Video: FC = () => {
   const [animation, setAnimation] = useState(false);
   const { error, loading, trailer } = useTypeSelector((state) => state.video);
   const { respons715 } = useTypeSelector((state) => state.respons);

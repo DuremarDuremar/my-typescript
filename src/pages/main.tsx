@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { FC, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useMediaQuery } from "react-responsive";
 
@@ -11,7 +11,7 @@ import { Content } from "../styles/style_main";
 import { useTypeSelector } from "../hooks/useTypeSelector";
 import { respons1000, respons715 } from "../store/actions/res_actions";
 
-const Main: React.FC = () => {
+const Main: FC = () => {
   const res1000 = useMediaQuery({ query: "(min-width: 1000px)" });
   const res715 = useMediaQuery({ query: "(min-width: 715px)" });
   const dispatch = useDispatch();

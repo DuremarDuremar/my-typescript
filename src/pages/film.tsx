@@ -1,7 +1,7 @@
-import React from "react";
+import React, { FC } from "react";
 
-function Film() {
+const Film: FC = () => {
   return <div>film</div>;
-}
+};
 
 export default Film;

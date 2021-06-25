@@ -14,7 +14,7 @@ const App: React.FC = () => {
           <Route path="/" exact>
             <Main />
           </Route>
-          <Route path="/film">
+          <Route path="/:id">
             <Film />
           </Route>
         </Switch>

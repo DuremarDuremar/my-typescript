@@ -1,5 +1,6 @@
 import { FC, useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 import { Content, Item, Button } from "../styles/style_top";
 import { useTypeSelector } from "../hooks/useTypeSelector";
@@ -44,6 +45,7 @@ const Top: FC = () => {
       return (
         <>
           {items.map((item, index) => {
+            let link = `/${item.filmId}`;
             return (
               <Item
                 key={index}
@@ -58,9 +60,11 @@ const Top: FC = () => {
                   <i className="fas fa-video fa-3x"></i>
                 </Button>
                 <img src={item.posterUrlPreview} alt={item.NameEn} />
-                <Button respons1000={respons1000}>
-                  <i className="fas fa-file-import fa-3x"></i>
-                </Button>
+                <Link to={link}>
+                  <Button respons1000={respons1000}>
+                    <i className="fas fa-file-import fa-3x"></i>
+                  </Button>
+                </Link>
               </Item>
             );
           })}
