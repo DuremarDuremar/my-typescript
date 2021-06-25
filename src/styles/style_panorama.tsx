@@ -35,21 +35,30 @@ export const Search = styled.form`
 `;
 export const Items = styled.div`
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   overflow-y: hidden;
   overflow-x: auto;
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 8px;
+    background-color: #0f2027;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #f9f9fd;
+  }
 `;
 export const Item = styled.div<{ not?: boolean; respons1000?: boolean }>`
   border: ${(props) => (props.not ? "none" : "1px solid black")};
   cursor: ${(props) => (props.not ? "default" : "pointer")};
   width: ${(props) => (props.respons1000 ? "140px" : "120px")};
-  min-width: 90px;
+  min-width: 120px;
   height: 360px;
   background-color: #0f2027;
   font-size: ${(props) => (props.respons1000 ? "14px" : "12px")};
   color: #fff;
   div {
     text-align: center;
+    padding: 0 3px;
     p:last-child {
       padding-top: 10px;
     }

@@ -27,7 +27,7 @@ const Main: React.FC = () => {
   }, [res1000, res715, dispatch]);
 
   return (
-    <Content move={video.loading}>
+    <Content move={video.loading} res715={res715}>
       <Header />
       <Top />
       <Video />
