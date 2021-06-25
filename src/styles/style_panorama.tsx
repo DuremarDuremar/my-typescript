@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Button } from "./style_top";
 
 export const Content = styled.section<{ respons715: boolean; move: boolean }>`
   grid-column: span 3 / auto;
@@ -52,23 +53,49 @@ export const Items = styled.div`
 export const Item = styled.div<{ not?: boolean; respons1000?: boolean }>`
   border: ${(props) => (props.not ? "none" : "1px solid black")};
   cursor: ${(props) => (props.not ? "default" : "pointer")};
-  width: ${(props) => (props.respons1000 ? "140px" : "120px")};
-  min-width: 120px;
-  height: 360px;
+  min-width: ${(props) => (props.respons1000 ? "140px" : "120px")};
+  position: relative;
+  max-height: 360px;
   background-color: #0f2027;
   font-size: ${(props) => (props.respons1000 ? "14px" : "12px")};
   color: #dcd9d4;
+  margin: 0px auto;
   div {
     text-align: center;
-    padding: 0 3px;
+    padding: 10px 3px 0;
     p:last-child {
       padding-top: 10px;
     }
   }
   img {
+    transition: all 0.6s ease-in-out;
+    padding: 0 3px;
     width: 100%;
     height: ${(props) => (props.respons1000 ? "60%" : "55%")};
     display: block;
     margin: 0px auto;
+  }
+  :hover img {
+    opacity: 0.4;
+  }
+  :hover button {
+    color: #fff;
+    z-index: 3;
+  }
+`;
+
+export const PanoramaButton = styled(Button)`
+  top: 30%;
+  left: 37%;
+`;
+
+export const Img = styled.div`
+  margin: 0px auto;
+  max-width: 360px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
   }
 `;

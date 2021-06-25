@@ -3,10 +3,18 @@ import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useDebounce } from "use-debounce";
 
-import { Content, Search, Items, Item } from "../styles/style_panorama";
+import {
+  Content,
+  Search,
+  Items,
+  Item,
+  PanoramaButton,
+  Img,
+} from "../styles/style_panorama";
 import { useTypeSelector } from "../hooks/useTypeSelector";
 import { fetchSearch } from "../store/actions/actions";
 import { removePanorama } from "../store/actions/actions";
+import panoramaImg from "../assets/panorama.jpg";
 import Spinner from "../utils/spinner";
 
 const Panorama: FC = () => {
@@ -67,36 +75,45 @@ const Panorama: FC = () => {
           </Search>
 
           <Items>
-            {items.map((item, index) => {
-              if (item.filmId === "not_found") {
-                return (
-                  <Item key={index} not respons1000={respons1000}>
-                    <div>
-                      <i className="fas fa-hashtag fa-4x"></i>
-                      <p>
-                        {item.nameRu}
-                        <br />
-                        {item.nameEn}
-                      </p>
-                    </div>
-                  </Item>
-                );
-              } else {
-                return (
-                  <Item key={index} respons1000={respons1000}>
-                    <img src={item.posterUrlPreview} alt={item.nameEn} />
-                    <div>
-                      <p>
-                        {item.nameRu}
-                        <br />
-                        {item.nameEn}
-                      </p>
-                      <p>{item.year}</p>
-                    </div>
-                  </Item>
-                );
-              }
-            })}
+            {items.length > 0 ? (
+              items.map((item, index) => {
+                if (item.filmId === "not_found") {
+                  return (
+                    <Item key={index} not respons1000={respons1000}>
+                      <div>
+                        <i className="fas fa-hashtag fa-4x"></i>
+                        <p>
+                          {item.nameRu}
+                          <br />
+                          {item.nameEn}
+                        </p>
+                      </div>
+                    </Item>
+                  );
+                } else {
+                  return (
+                    <Item key={index} respons1000={respons1000}>
+                      <img src={item.posterUrlPreview} alt={item.nameEn} />
+                      <div>
+                        <p>
+                          {item.nameRu}
+                          <br />
+                          {item.nameEn}
+                        </p>
+                        <p>{item.year}</p>
+                      </div>
+                      <PanoramaButton respons1000={respons1000}>
+                        <i className="fas fa-file-import fa-3x"></i>
+                      </PanoramaButton>
+                    </Item>
+                  );
+                }
+              })
+            ) : (
+              <Img>
+                <img src={panoramaImg} alt="panorama" />
+              </Img>
+            )}
           </Items>
         </>
       );

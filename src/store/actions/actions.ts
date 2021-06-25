@@ -57,7 +57,7 @@ const arrayTop: string[] = [
   "483",
 ];
 
-const arrayDirectors: string[] = [
+const arrayDirectors: string[] = shuffle([
   "5890",
   "12020",
   "12019",
@@ -71,7 +71,7 @@ const arrayDirectors: string[] = [
   "22412",
   "64249",
   "185595",
-];
+]);
 
 export const fetchTop = (
   n: number,
