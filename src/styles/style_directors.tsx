@@ -68,7 +68,7 @@ export const Item = styled.div<{ respons715: boolean }>`
     !props.respons715 &&
     `
     min-width: 90px;
-    height: 120px;
+    height: 132px;
 
     :last-child {
       border-right: 10px solid #0f2027;

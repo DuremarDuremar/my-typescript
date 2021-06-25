@@ -45,7 +45,7 @@ const Panorama: FC = () => {
     if (error) {
       return <h1>{error}</h1>;
     } else if (items.length < 1 && loading) {
-      return <Spinner />;
+      return <Spinner top />;
     } else {
       return (
         <>
@@ -61,6 +61,7 @@ const Panorama: FC = () => {
               className="fas fa-trash fa-lg"
               onClick={() => {
                 setText("");
+                dispatch(removePanorama());
               }}
             ></i>
           </Search>

@@ -10,8 +10,6 @@ export const Content = styled.section<{ respons715: boolean; move: boolean }>`
   ${(props) =>
     !props.respons715 &&
     `
-    
-   
     grid-column: span 4 / auto;
     `}
 `;
@@ -31,6 +29,10 @@ export const Search = styled.form`
   }
   i {
     cursor: pointer;
+    transition: all 0.4s ease-in-out;
+    :hover {
+      opacity: 0.6;
+    }
   }
 `;
 export const Items = styled.div`
@@ -55,7 +57,7 @@ export const Item = styled.div<{ not?: boolean; respons1000?: boolean }>`
   height: 360px;
   background-color: #0f2027;
   font-size: ${(props) => (props.respons1000 ? "14px" : "12px")};
-  color: #fff;
+  color: #dcd9d4;
   div {
     text-align: center;
     padding: 0 3px;
