@@ -18,8 +18,6 @@ const Main: FC = () => {
   const top = useTypeSelector((state) => state.top);
   const video = useTypeSelector((state) => state.video);
   const directors = useTypeSelector((state) => state.directors);
-  // console.log("res1000", res1000);
-  // console.log("res715", res715);
 
   useEffect(() => {
     dispatch(respons1000(res1000));

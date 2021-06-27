@@ -1,6 +1,7 @@
 import { FC, useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import { Content, Item, Button } from "../styles/style_top";
 import { useTypeSelector } from "../hooks/useTypeSelector";
@@ -15,6 +16,8 @@ const Top: FC = () => {
   const [dopLoading, setDopLoading] = useState(false);
   const { error, loading, items } = useTypeSelector((state) => state.top);
   const { respons1000, respons715 } = useTypeSelector((state) => state.respons);
+
+  const history = useHistory();
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -31,7 +34,7 @@ const Top: FC = () => {
   // console.log("isVisible", isVisible);
   // console.log("items", items);
   // console.log(idVideo);
-  // console.log(dopLoading);
+  console.log("top", history);
 
   const containerRef = useElementOnScreen(setIsVisible, 3, "top");
   const scrollRef: any = useHorizontalScroll();

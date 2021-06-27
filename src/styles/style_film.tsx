@@ -2,6 +2,9 @@ import styled from "styled-components";
 
 export const Content = styled.section`
   min-height: 100vh;
+`;
+
+export const Container = styled.section`
   display: flex;
   justify-content: space-around;
   padding: 10px 5px;

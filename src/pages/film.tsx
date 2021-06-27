@@ -1,8 +1,9 @@
 import React, { FC } from "react";
 import { useParams } from "react-router";
+import { useHistory } from "react-router-dom";
 
 import { useTypeSelector } from "../hooks/useTypeSelector";
-import { Content, Img, Info } from "../styles/style_film";
+import { Content, Container, Img, Info } from "../styles/style_film";
 
 const des: any = [
   { id: "195434", desk: "США, Итан Коэн, Джоэл Коэн" },
@@ -50,6 +51,7 @@ const Film: FC = () => {
   const top = useTypeSelector((state) => state.top);
   const panorama = useTypeSelector((state) => state.panorama);
   let { id } = useParams<{ id: string }>();
+  const history = useHistory();
 
   let findId = des.find((film: any) => film.id === id);
 
@@ -64,20 +66,23 @@ const Film: FC = () => {
     return res[0];
   };
 
-  // console.log(film());
+  console.log("history", history);
 
   return (
     <Content>
-      <Img>
-        <p>{film().description}</p>
-        <img src={film().posterUrlPreview} alt={film().nameEn} />
-      </Img>
+      <button onClick={() => history.push("/", { from: "Film" })}>5555</button>
+      <Container>
+        <Img>
+          <p>{film().description}</p>
+          <img src={film().posterUrlPreview} alt={film().nameEn} />
+        </Img>
 
-      <Info>
-        <h1>{film().nameRu}</h1>
-        <h2> {film().nameEn}</h2>
-        <h3>{film().year}</h3>
-      </Info>
+        <Info>
+          <h1>{film().nameRu}</h1>
+          <h2> {film().nameEn}</h2>
+          <h3>{film().year}</h3>
+        </Info>
+      </Container>
     </Content>
   );
 };

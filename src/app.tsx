@@ -11,12 +11,9 @@ const App: React.FC = () => {
       <Global />
       <Content>
         <Switch>
-          <Route path="/" exact>
-            <Main />
-          </Route>
-          <Route path="/:id">
-            <Film />
-          </Route>
+          <Route path="/" exact component={Main} />
+
+          <Route path="/:id" component={Film} />
         </Switch>
       </Content>
     </Router>
