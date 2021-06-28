@@ -1,9 +1,10 @@
-import React, { FC } from "react";
+import React, { FC, useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { useHistory } from "react-router-dom";
 
 import { useTypeSelector } from "../hooks/useTypeSelector";
 import { Content, Container, Img, Info } from "../styles/style_film";
+import { fetchFrames } from "../store/actions/actions";
 
 const des: any = [
   { id: "195434", desk: "США, Итан Коэн, Джоэл Коэн" },
@@ -48,6 +49,7 @@ const des: any = [
   { id: "483", desk: "Великобритания, Терри Гиллиам" },
 ];
 const Film: FC = () => {
+  const [frames, setFrames] = useState<any>(null);
   const top = useTypeSelector((state) => state.top);
   const panorama = useTypeSelector((state) => state.panorama);
   let { id } = useParams<{ id: string }>();
@@ -61,12 +63,18 @@ const Film: FC = () => {
     );
     if (findId) {
       res[0].description = findId.desk;
+    } else {
+      res[0].description = res[0].description.split("(")[0];
     }
 
     return res[0];
   };
 
-  console.log("history", history);
+  useEffect(() => {
+    fetchFrames(id, setFrames);
+  }, [id]);
+
+  console.log(frames);
 
   return (
     <Content>

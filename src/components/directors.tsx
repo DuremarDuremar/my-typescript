@@ -16,7 +16,7 @@ const Directors: FC = () => {
   const { respons715 } = useTypeSelector((state) => state.respons);
   const dispatch = useDispatch();
 
-  console.log(isVisible);
+  // console.log(isVisible);
 
   useEffect(() => {
     if (isVisible * 8 >= items.length) {
