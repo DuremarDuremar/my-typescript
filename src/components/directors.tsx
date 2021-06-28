@@ -16,13 +16,21 @@ const Directors: FC = () => {
   const { respons715 } = useTypeSelector((state) => state.respons);
   const dispatch = useDispatch();
 
+  console.log(isVisible);
+
   useEffect(() => {
-    setTimeout(() => {
-      dispatch(fetchDirectors(isVisible, setDopLoading));
-    }, 800);
+    if (isVisible * 8 >= items.length) {
+      setTimeout(() => {
+        dispatch(fetchDirectors(isVisible, setDopLoading));
+      }, 800);
+    }
   }, [dispatch, isVisible]);
 
-  const containerRef = useElementOnScreen(setIsVisible, 8, "directors");
+  const containerRef = useElementOnScreen(
+    setIsVisible,
+    items.length,
+    "directors"
+  );
   const scrollRef: any = useHorizontalScroll();
 
   const render = () => {

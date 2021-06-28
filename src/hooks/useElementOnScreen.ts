@@ -11,7 +11,7 @@ const options: IOptionsSlider = {
 
 export const useElementOnScreen = (
   setIsVisible: React.Dispatch<React.SetStateAction<number>>,
-  page?: number,
+  page: number = 0,
   component?: string
 ) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -23,7 +23,7 @@ export const useElementOnScreen = (
       if (component === "top") {
         setIsVisible((prev) => (prev !== page ? prev + 1 : prev));
       } else {
-        setIsVisible((prev) => (prev !== page ? prev + 8 : prev));
+        setIsVisible((prev) => (prev > page ? prev : prev + 8));
       }
     }
   });
