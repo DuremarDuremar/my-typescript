@@ -30,6 +30,7 @@ export const Director = styled.div`
 export const Right = styled.div``;
 
 export const Info = styled.div`
+  text-align: center;
   h1 {
     font-size: calc(14px + 2.5vmax);
   }
@@ -44,9 +45,10 @@ export const Frames = styled.div`
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 10px;
   div {
-    max-width: 400px;
     img {
       width: 100%;
+      display: flex;
+      justify-content: center;
     }
   }
 `;
@@ -69,4 +71,8 @@ export const Button = styled.div`
       );
     border-radius: 50%;
   }
+`;
+
+export const Footer = styled.div`
+  padding: 20px 10px;
 `;

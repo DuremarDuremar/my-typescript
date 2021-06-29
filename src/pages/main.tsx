@@ -1,6 +1,4 @@
-import React, { FC, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useMediaQuery } from "react-responsive";
+import React, { FC } from "react";
 
 import Header from "../components/header";
 import Top from "../components/top";
@@ -9,23 +7,15 @@ import Directors from "../components/directors";
 import Panorama from "../components/panorama";
 import { Content } from "../styles/style_main";
 import { useTypeSelector } from "../hooks/useTypeSelector";
-import { respons1000, respons715 } from "../store/actions/res_actions";
 
 const Main: FC = () => {
-  const res1000 = useMediaQuery({ query: "(min-width: 1000px)" });
-  const res715 = useMediaQuery({ query: "(min-width: 715px)" });
-  const dispatch = useDispatch();
   const top = useTypeSelector((state) => state.top);
   const video = useTypeSelector((state) => state.video);
   const directors = useTypeSelector((state) => state.directors);
-
-  useEffect(() => {
-    dispatch(respons1000(res1000));
-    dispatch(respons715(res715));
-  }, [res1000, res715, dispatch]);
+  const { respons715 } = useTypeSelector((state) => state.respons);
 
   return (
-    <Content move={video.loading} res715={res715}>
+    <Content move={video.loading} res715={respons715}>
       <Header />
       <Top />
       <Video />

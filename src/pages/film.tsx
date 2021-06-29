@@ -3,6 +3,8 @@ import { useParams } from "react-router";
 import { useHistory } from "react-router-dom";
 
 import { useTypeSelector } from "../hooks/useTypeSelector";
+import Spinner from "../utils/spinner";
+
 import {
   Content,
   Container,
@@ -12,6 +14,7 @@ import {
   Director,
   Frames,
   Button,
+  Footer,
 } from "../styles/style_film";
 import { fetchFrames } from "../store/actions/actions";
 
@@ -61,6 +64,7 @@ const Film: FC = () => {
   const [frames, setFrames] = useState<any>(null);
   const top = useTypeSelector((state) => state.top);
   const panorama = useTypeSelector((state) => state.panorama);
+  const { respons1000 } = useTypeSelector((state) => state.respons);
   let { id } = useParams<{ id: string }>();
   const history = useHistory();
 
@@ -80,52 +84,88 @@ const Film: FC = () => {
   };
 
   useEffect(() => {
-    setFrames(null);
     fetchFrames(id, setFrames);
   }, [id]);
 
-  if (film) {
-    return (
-      <Content>
-        <Container>
-          <Left>
-            <Director>
-              <h4>{film().description}</h4>
-            </Director>
-            <img src={film().posterUrlPreview} alt={film().nameEn} />
-            <Button>
-              {" "}
-              <button onClick={() => history.push("/", { from: "Film" })}>
-                <i className="fas fa-undo fa-4x"></i>
-              </button>
-            </Button>
-          </Left>
+  const framesSpinner = () => {
+    if (frames) {
+      return (
+        <Frames>
+          {frames.slice(0, 8).map((item: any, index: number) => {
+            return (
+              <div key={index}>
+                <img src={item.preview} alt={String(index)} />
+              </div>
+            );
+          })}
+        </Frames>
+      );
+    } else {
+      return <Spinner />;
+    }
+  };
 
-          <Right>
-            <Info>
-              <h1>{film().nameRu}</h1>
-              <h2> {film().nameEn}</h2>
-              <h3>{film().year}</h3>
-            </Info>
+  const render = () => {
+    if (film) {
+      return (
+        <>
+          <Container>
+            <Left>
+              {respons1000 && (
+                <Director>
+                  <h4>{film().description}</h4>
+                </Director>
+              )}
+              <img src={film().posterUrlPreview} alt={film().nameEn} />
+              {respons1000 && (
+                <Button>
+                  <button
+                    onClick={() => {
+                      history.push("/", { from: "Film" });
+                      setFrames(null);
+                    }}
+                  >
+                    <i className="fas fa-undo fa-4x"></i>
+                  </button>
+                </Button>
+              )}
+            </Left>
 
-            {frames && (
-              <Frames>
-                {frames.slice(0, 8).map((item: any, index: number) => {
-                  return (
-                    <div key={index}>
-                      <img src={item.preview} alt={String(index)} />
-                    </div>
-                  );
-                })}
-              </Frames>
-            )}
-          </Right>
-        </Container>
-      </Content>
-    );
-  } else {
-    return <p>loading...</p>;
-  }
+            <Right>
+              <Info>
+                <h1>{film().nameRu}</h1>
+                <h2> {film().nameEn}</h2>
+                <h3>{film().year}</h3>
+              </Info>
+              {!respons1000 && (
+                <Director>
+                  <h4>{film().description}</h4>
+                </Director>
+              )}
+              {!respons1000 && (
+                <Button>
+                  <button
+                    onClick={() => {
+                      history.push("/", { from: "Film" });
+                      setFrames(null);
+                    }}
+                  >
+                    <i className="fas fa-undo fa-4x"></i>
+                  </button>
+                </Button>
+              )}
+              {respons1000 && framesSpinner()}
+            </Right>
+          </Container>
+          <Footer>{!respons1000 && framesSpinner()}</Footer>
+        </>
+      );
+    } else {
+      return <Spinner top />;
+    }
+  };
+
+  return <Content>{render()}</Content>;
 };
 
 export default Film;
