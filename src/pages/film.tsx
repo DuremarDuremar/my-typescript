@@ -3,7 +3,16 @@ import { useParams } from "react-router";
 import { useHistory } from "react-router-dom";
 
 import { useTypeSelector } from "../hooks/useTypeSelector";
-import { Content, Container, Img, Info, Frames } from "../styles/style_film";
+import {
+  Content,
+  Container,
+  Left,
+  Right,
+  Info,
+  Director,
+  Frames,
+  Button,
+} from "../styles/style_film";
 import { fetchFrames } from "../store/actions/actions";
 
 const des: any = [
@@ -75,25 +84,48 @@ const Film: FC = () => {
     fetchFrames(id, setFrames);
   }, [id]);
 
-  console.log(frames);
+  if (film) {
+    return (
+      <Content>
+        <Container>
+          <Left>
+            <Director>
+              <h4>{film().description}</h4>
+            </Director>
+            <img src={film().posterUrlPreview} alt={film().nameEn} />
+            <Button>
+              {" "}
+              <button onClick={() => history.push("/", { from: "Film" })}>
+                <i className="fas fa-undo fa-4x"></i>
+              </button>
+            </Button>
+          </Left>
 
-  return (
-    <Content>
-      <button onClick={() => history.push("/", { from: "Film" })}>5555</button>
-      <Container>
-        <Img>
-          <p>{film().description}</p>
-          <img src={film().posterUrlPreview} alt={film().nameEn} />
-        </Img>
+          <Right>
+            <Info>
+              <h1>{film().nameRu}</h1>
+              <h2> {film().nameEn}</h2>
+              <h3>{film().year}</h3>
+            </Info>
 
-        <Info>
-          <h1>{film().nameRu}</h1>
-          <h2> {film().nameEn}</h2>
-          <h3>{film().year}</h3>
-        </Info>
-      </Container>
-    </Content>
-  );
+            {frames && (
+              <Frames>
+                {frames.slice(0, 8).map((item: any, index: number) => {
+                  return (
+                    <div key={index}>
+                      <img src={item.preview} alt={String(index)} />
+                    </div>
+                  );
+                })}
+              </Frames>
+            )}
+          </Right>
+        </Container>
+      </Content>
+    );
+  } else {
+    return <p>loading...</p>;
+  }
 };
 
 export default Film;

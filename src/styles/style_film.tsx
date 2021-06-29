@@ -11,19 +11,23 @@ export const Container = styled.div`
   font-family: "Ubuntu";
 `;
 
-export const Img = styled.div`
+export const Left = styled.div`
   max-width: 600px;
   padding-right: 10px;
   img {
     margin-top: 10px;
     width: 100%;
   }
+`;
 
-  p {
+export const Director = styled.div`
+  h4 {
     font-size: calc(12px + 1vmax);
     text-align: center;
   }
 `;
+
+export const Right = styled.div``;
 
 export const Info = styled.div`
   h1 {
@@ -35,4 +39,34 @@ export const Info = styled.div`
   }
 `;
 
-export const Frames = styled.div``;
+export const Frames = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  div {
+    max-width: 400px;
+    img {
+      width: 100%;
+    }
+  }
+`;
+
+export const Button = styled.div`
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  button {
+    background-image: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.5) 0%,
+        rgba(0, 0, 0, 0.5) 100%
+      ),
+      radial-gradient(
+        at 50% 0%,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(0, 0, 0, 0.5) 50%
+      );
+    border-radius: 50%;
+  }
+`;

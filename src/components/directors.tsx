@@ -16,8 +16,8 @@ const Directors: FC = () => {
   const { respons715 } = useTypeSelector((state) => state.respons);
   const dispatch = useDispatch();
 
-  console.log("isVisible", isVisible);
-  console.log("items.length", items.length);
+  // console.log("isVisible", isVisible);
+  // console.log("items.length", items.length);
 
   let renderEffect = useCallback((n) => {
     return n;

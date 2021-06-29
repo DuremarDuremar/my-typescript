@@ -226,17 +226,14 @@ export const fetchFrames = async (
   setFrames: React.Dispatch<React.SetStateAction<any>>
 ) => {
   try {
-    const res = await axios.get(
-      `https://kinopoiskapiunofficial.tech/api/v2.1/films/${id}/frames`,
-      {
+    await axios
+      .get(`https://kinopoiskapiunofficial.tech/api/v2.1/films/${id}/frames`, {
         method: "GET",
         headers: {
           "X-API-KEY": "3624a818-0f9b-4117-91dd-3f6624d9d171",
         },
-      }
-    );
-
-    setFrames(res.data);
+      })
+      .then((res) => setFrames(res.data.frames));
   } catch (e) {
     console.log("ff", e);
   }
