@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from "react";
+import { FC, useState, useEffect, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -18,11 +18,15 @@ const Top: FC = () => {
 
   const dispatch = useDispatch();
 
+  const renderEffect = useCallback((n) => {
+    return n;
+  }, []);
+
   useEffect(() => {
-    if (isVisible * 10 >= items.length) {
+    if (isVisible * 10 >= renderEffect(items.length)) {
       dispatch(fetchTop(isVisible, setDopLoading));
     }
-  }, [dispatch, isVisible]);
+  }, [dispatch, isVisible, renderEffect, items.length]);
 
   useEffect(() => {
     if (idVideo) {
@@ -33,8 +37,6 @@ const Top: FC = () => {
 
   // console.log("isVisible", isVisible);
   // console.log("items", items);
-  // console.log(idVideo);
-  // console.log("top", history);
 
   const containerRef = useElementOnScreen(setIsVisible, 3, "top");
   const scrollRef: any = useHorizontalScroll();

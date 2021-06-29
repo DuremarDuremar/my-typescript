@@ -76,6 +76,12 @@ const arrayDirectors: string[] = shuffle([
   "10015",
   "9844",
   "7640",
+  "23573",
+  "22174",
+  "20299",
+  "31951",
+  "12665",
+  "23799",
 ]);
 
 export const fetchTop = (

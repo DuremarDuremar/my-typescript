@@ -22,7 +22,7 @@ export const Slider = styled.div<{ respons715: boolean }>`
     `
     overflow-y: auto;
     overflow-x: hidden;
-    height: 445px;
+    height: 480px;
     `}
 
   ${(props) =>

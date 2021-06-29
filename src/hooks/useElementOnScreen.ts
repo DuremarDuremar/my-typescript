@@ -16,14 +16,14 @@ export const useElementOnScreen = (
 ) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const onThrottle = throttle(60, (entries: any) => {
+  const onThrottle = throttle(160, (entries: any) => {
     const [entry] = entries;
 
     if (entry.isIntersecting === true) {
       if (component === "top") {
         setIsVisible((prev) => (prev !== page ? prev + 1 : prev));
       } else {
-        setIsVisible((prev) => (prev > page ? prev : prev + 8));
+        setIsVisible((prev) => (prev <= page ? prev + 8 : prev));
       }
     }
   });

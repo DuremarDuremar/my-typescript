@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import { useHistory } from "react-router-dom";
 
 import { useTypeSelector } from "../hooks/useTypeSelector";
-import { Content, Container, Img, Info } from "../styles/style_film";
+import { Content, Container, Img, Info, Frames } from "../styles/style_film";
 import { fetchFrames } from "../store/actions/actions";
 
 const des: any = [
@@ -71,6 +71,7 @@ const Film: FC = () => {
   };
 
   useEffect(() => {
+    setFrames(null);
     fetchFrames(id, setFrames);
   }, [id]);
 

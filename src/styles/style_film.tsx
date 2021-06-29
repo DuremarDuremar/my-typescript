@@ -4,14 +4,14 @@ export const Content = styled.section`
   min-height: 100vh;
 `;
 
-export const Container = styled.section`
+export const Container = styled.div`
   display: flex;
   justify-content: space-around;
   padding: 10px 5px;
   font-family: "Ubuntu";
 `;
 
-export const Img = styled.section`
+export const Img = styled.div`
   max-width: 600px;
   padding-right: 10px;
   img {
@@ -25,7 +25,7 @@ export const Img = styled.section`
   }
 `;
 
-export const Info = styled.section`
+export const Info = styled.div`
   h1 {
     font-size: calc(14px + 2.5vmax);
   }
@@ -34,3 +34,5 @@ export const Info = styled.section`
     font-size: calc(11px + 1.5vmax);
   }
 `;
+
+export const Frames = styled.div``;

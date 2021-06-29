@@ -1,4 +1,4 @@
-import { useState, useEffect, FC } from "react";
+import { useState, useEffect, useCallback, FC } from "react";
 import { useDispatch } from "react-redux";
 
 import { Content, Slider, Item } from "../styles/style_directors";
@@ -16,21 +16,22 @@ const Directors: FC = () => {
   const { respons715 } = useTypeSelector((state) => state.respons);
   const dispatch = useDispatch();
 
-  // console.log(isVisible);
+  console.log("isVisible", isVisible);
+  console.log("items.length", items.length);
+
+  let renderEffect = useCallback((n) => {
+    return n;
+  }, []);
 
   useEffect(() => {
-    if (isVisible * 8 >= items.length) {
+    if (isVisible + 8 > renderEffect(items.length)) {
       setTimeout(() => {
         dispatch(fetchDirectors(isVisible, setDopLoading));
       }, 800);
     }
-  }, [dispatch, isVisible]);
+  }, [dispatch, isVisible, renderEffect, items.length]);
 
-  const containerRef = useElementOnScreen(
-    setIsVisible,
-    items.length,
-    "directors"
-  );
+  const containerRef = useElementOnScreen(setIsVisible, 18, "directors");
   const scrollRef: any = useHorizontalScroll();
 
   const render = () => {
