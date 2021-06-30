@@ -9,3 +9,9 @@ export const Content = styled.section`
   background-color: rgb(220, 217, 212, 0.9);
   z-index: 3;
 `;
+
+export const Direct = styled.div`
+  width: 500px;
+  height: 300px;
+  background-color: #fff;
+`;
