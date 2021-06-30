@@ -8,7 +8,11 @@ import { useHorizontalScroll } from "../hooks/useHorizontalScroll";
 import { fetchDirectors } from "../store/actions/actions";
 import Spinner from "../utils/spinner";
 
-const Directors: FC = () => {
+interface IProps {
+  setModal: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Directors: FC<IProps> = ({ setModal }) => {
   const [isVisible, setIsVisible] = useState<number>(0);
   const [dopLoading, setDopLoading] = useState(false);
   const { error, loading, items } = useTypeSelector((state) => state.directors);
@@ -52,6 +56,7 @@ const Directors: FC = () => {
                 key={index}
                 ref={index === items.length - 2 ? containerRef : null}
                 respons715={respons715}
+                onClick={() => setModal(true)}
               >
                 <img src={item.posterUrl} alt={item.nameEn} />
                 {respons715 && <p>{item.nameRu}</p>}
