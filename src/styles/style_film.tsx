@@ -44,11 +44,22 @@ export const Frames = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 10px;
-  div {
-    img {
-      width: 100%;
-      display: flex;
-      justify-content: center;
+`;
+
+export const Img = styled.div<{ right: boolean }>`
+  img {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    transition: all 0.8s linear;
+    cursor: zoom-in;
+    :hover {
+      position: relative;
+      z-index: 2;
+      transform: ${(props) =>
+        props.right
+          ? "scale(1.5) translateY(10%) translateX(20%)"
+          : "scale(1.5) translateY(10%) translateX(-20%)"};
     }
   }
 `;

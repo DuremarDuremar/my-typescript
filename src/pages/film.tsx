@@ -12,6 +12,7 @@ import {
   Right,
   Info,
   Director,
+  Img,
   Frames,
   Button,
   Footer,
@@ -68,6 +69,10 @@ const Film: FC = () => {
   let { id } = useParams<{ id: string }>();
   const history = useHistory();
 
+  let renderId = [...panorama.items, ...top.items].find(
+    (film: any) => film.filmId === Number(id)
+  );
+
   let findId = des.find((film: any) => film.id === id);
 
   const film = () => {
@@ -93,9 +98,9 @@ const Film: FC = () => {
         <Frames>
           {frames.slice(0, 8).map((item: any, index: number) => {
             return (
-              <div key={index}>
+              <Img key={index} right={index % 2 === 0 ? true : false}>
                 <img src={item.preview} alt={String(index)} />
-              </div>
+              </Img>
             );
           })}
         </Frames>
@@ -106,7 +111,7 @@ const Film: FC = () => {
   };
 
   const render = () => {
-    if (film) {
+    if (renderId) {
       return (
         <>
           <Container>
@@ -161,7 +166,7 @@ const Film: FC = () => {
         </>
       );
     } else {
-      return <Spinner top />;
+      return <a href={"/"}>{id}</a>;
     }
   };
 
