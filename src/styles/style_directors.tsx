@@ -16,13 +16,22 @@ export const Content = styled.section<{ respons715: boolean; move: boolean }>`
     grid-column: span 4 / auto;
     `}
 `;
-export const Slider = styled.div<{ respons715: boolean }>`
+export const Slider = styled.div<{ respons715: boolean; respons1000: boolean }>`
   ${(props) =>
-    props.respons715 &&
+    props.respons1000 &&
     `
     overflow-y: auto;
     overflow-x: hidden;
-    height: 480px;
+    height: 425px;
+    `}
+
+  ${(props) =>
+    props.respons715 &&
+    !props.respons1000 &&
+    `
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 460px;
     `}
 
   ${(props) =>

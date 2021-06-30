@@ -13,7 +13,7 @@ const Directors: FC = () => {
   const [dopLoading, setDopLoading] = useState(false);
   const { error, loading, items } = useTypeSelector((state) => state.directors);
   const video = useTypeSelector((state) => state.video);
-  const { respons715 } = useTypeSelector((state) => state.respons);
+  const { respons715, respons1000 } = useTypeSelector((state) => state.respons);
   const dispatch = useDispatch();
 
   // console.log("isVisible", isVisible);
@@ -66,7 +66,11 @@ const Directors: FC = () => {
 
   return (
     <Content respons715={respons715} move={video.loading}>
-      <Slider respons715={respons715} ref={!respons715 ? scrollRef : null}>
+      <Slider
+        respons715={respons715}
+        respons1000={respons1000}
+        ref={!respons715 ? scrollRef : null}
+      >
         {render()}
       </Slider>
     </Content>

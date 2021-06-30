@@ -1,7 +1,7 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
 
-const rotate = (n: any) => keyframes`
+export const rotate = (n: any) => keyframes`
  0% {
     -webkit-transform: rotate(0);
     transform: rotate(0);

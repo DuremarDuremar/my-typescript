@@ -30,15 +30,10 @@ const Panorama: FC = () => {
     search: string;
   };
 
-  const {
-    handleSubmit,
-    watch,
-    setValue,
-    formState: { errors },
-  } = useForm<Inputs>({ defaultValues: { search: "" } });
+  const { handleSubmit, setValue } = useForm<Inputs>({
+    defaultValues: { search: "" },
+  });
   // console.log(watch("search"));
-
-  // console.log("text", text);
 
   useEffect(() => {
     setValue("search", value);
@@ -49,6 +44,10 @@ const Panorama: FC = () => {
       handleSubmit((data) => dispatch(fetchSearch(data.search)))();
     }
   }, [value, setValue, handleSubmit, dispatch]);
+
+  const checkKeyDown = (e: any) => {
+    if (e.code === "Enter") e.preventDefault();
+  };
 
   const render = () => {
     if (error) {
@@ -65,6 +64,7 @@ const Panorama: FC = () => {
               onChange={(e) => {
                 setText(e.target.value);
               }}
+              onKeyDown={(e) => checkKeyDown(e)}
             />
             <i
               className="fas fa-trash fa-lg"

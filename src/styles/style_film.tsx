@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { rotate } from "../utils/spinner";
 
 export const Content = styled.section`
   min-height: 100vh;
@@ -81,6 +82,9 @@ export const Button = styled.div`
         rgba(0, 0, 0, 0.5) 50%
       );
     border-radius: 50%;
+  }
+  :hover {
+    animation: ${rotate("-360deg")} 1s linear infinite;
   }
 `;
 
