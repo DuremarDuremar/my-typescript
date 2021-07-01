@@ -19,11 +19,24 @@ export const Direct = styled.div`
   background-color: #fff;
   border-radius: 30px;
   padding: 8px;
+  display: flex;
+  /* justify-content: space-between; */
 `;
 
 export const Foto = styled.div`
   width: 200px;
+  height: 300px;
   img {
     max-width: 100%;
+    max-height: 300px;
   }
+`;
+
+export const Info = styled.div`
+  text-align: center;
+  flex: 1 1;
+`;
+
+export const Films = styled.div`
+  height: 200px;
 `;
