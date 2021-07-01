@@ -10,7 +10,9 @@ import { Content } from "../styles/style_main";
 import { useTypeSelector } from "../hooks/useTypeSelector";
 
 const Main: FC = () => {
-  const [modal, setModal] = useState<boolean>(true);
+  const [modal, setModal] = useState<boolean>(false);
+  const [person, setPerson] = useState<any>(null);
+
   const top = useTypeSelector((state) => state.top);
   const video = useTypeSelector((state) => state.video);
   const directors = useTypeSelector((state) => state.directors);
@@ -22,12 +24,12 @@ const Main: FC = () => {
       <Top />
       <Video />
       {top.items.length > 0 ? (
-        <Directors setModal={setModal} />
+        <Directors setModal={setModal} setPerson={setPerson} />
       ) : (
         <p>loading...</p>
       )}
       {directors.items.length > 0 ? <Panorama /> : <p>loading...</p>}
-      {modal && <Modal setModal={setModal} />}
+      {modal && <Modal setModal={setModal} person={person} />}
     </Content>
   );
 };

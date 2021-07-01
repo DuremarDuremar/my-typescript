@@ -10,9 +10,10 @@ import Spinner from "../utils/spinner";
 
 interface IProps {
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setPerson: React.Dispatch<React.SetStateAction<number | null>>;
 }
 
-const Directors: FC<IProps> = ({ setModal }) => {
+const Directors: FC<IProps> = ({ setModal, setPerson }) => {
   const [isVisible, setIsVisible] = useState<number>(0);
   const [dopLoading, setDopLoading] = useState(false);
   const { error, loading, items } = useTypeSelector((state) => state.directors);
@@ -56,7 +57,10 @@ const Directors: FC<IProps> = ({ setModal }) => {
                 key={index}
                 ref={index === items.length - 2 ? containerRef : null}
                 respons715={respons715}
-                onClick={() => setModal(true)}
+                onClick={() => {
+                  setModal(true);
+                  setPerson(item);
+                }}
               >
                 <img src={item.posterUrl} alt={item.nameEn} />
                 {respons715 && <p>{item.nameRu}</p>}
