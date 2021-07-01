@@ -4,7 +4,7 @@ import { Content } from "../styles/style_header";
 const Header = () => {
   return (
     <Content>
-      <h1>Header</h1>
+      <h1>Films</h1>
     </Content>
   );
 };

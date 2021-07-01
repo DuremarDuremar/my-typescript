@@ -14,6 +14,7 @@ const Top: FC = () => {
   const [idVideo, setIdVideo] = useState<number | null>(null);
   const [dopLoading, setDopLoading] = useState(false);
   const { error, loading, items } = useTypeSelector((state) => state.top);
+  const directors = useTypeSelector((state) => state.directors);
   const { respons1000, respons715 } = useTypeSelector((state) => state.respons);
 
   const dispatch = useDispatch();
@@ -57,19 +58,23 @@ const Top: FC = () => {
                 ref={index === items.length - 3 ? containerRef : null}
                 respons1000={respons1000}
               >
-                <Button
-                  left
-                  respons1000={respons1000}
-                  onClick={() => setIdVideo(item.filmId)}
-                >
-                  <i className="fas fa-video fa-3x"></i>
-                </Button>
-                <img src={item.posterUrlPreview} alt={item.NameEn} />
-                <Link to={link}>
-                  <Button respons1000={respons1000}>
-                    <i className="fas fa-file-import fa-3x"></i>
+                {directors.loading && (
+                  <Button
+                    left
+                    respons1000={respons1000}
+                    onClick={() => setIdVideo(item.filmId)}
+                  >
+                    <i className="fas fa-video fa-3x"></i>
                   </Button>
-                </Link>
+                )}
+                <img src={item.posterUrlPreview} alt={item.NameEn} />
+                {directors.loading && (
+                  <Link to={link}>
+                    <Button respons1000={respons1000}>
+                      <i className="fas fa-file-import fa-3x"></i>
+                    </Button>
+                  </Link>
+                )}
               </Item>
             );
           })}

@@ -12,7 +12,7 @@ export const Content = styled.section<{
   width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
-  margin: 0px auto;
+  margin: 5px auto 0;
   position: relative;
   z-index: 1;
 `;
