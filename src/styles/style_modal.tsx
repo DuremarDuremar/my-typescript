@@ -13,22 +13,28 @@ export const Content = styled.section`
   align-items: center;
 `;
 
-export const Direct = styled.div`
-  width: 500px;
-  height: 300px;
+export const Direct = styled.div<{ respons715: boolean }>`
+  /* width: 500px;
+  height: 300px; */
+  width: ${(props) => (props.respons715 ? "500px" : "250px")};
+  height: ${(props) => (props.respons715 ? "300px" : "578px")};
   background-color: #fff;
   border-radius: 30px;
   padding: 8px;
-  display: flex;
-  /* justify-content: space-between; */
+  /* display: flex; */
+  display: ${(props) => (props.respons715 ? "flex" : "block")};
 `;
 
 export const Foto = styled.div`
   width: 200px;
   height: 300px;
+  margin: 0px auto;
+
   img {
     max-width: 100%;
     max-height: 300px;
+    display: block;
+    margin: 0px auto;
   }
 `;
 
@@ -38,5 +44,19 @@ export const Info = styled.div`
 `;
 
 export const Films = styled.div`
-  height: 200px;
+  margin-top: 5px;
+  border-top: 2px solid black;
+  overflow-y: auto;
+  max-height: 190px;
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 8px;
+    background-color: #f9f9fd;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #0f2027;
+  }
+  p {
+    font-style: italic;
+  }
 `;

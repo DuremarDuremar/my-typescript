@@ -45,13 +45,13 @@ export const Slider = styled.div<{ respons715: boolean; respons1000: boolean }>`
     align-items:center;
     `}
 
-  ::-webkit-scrollbar {
+::-webkit-scrollbar {
     width: 10px;
     height: 8px;
-    background-color: #0f2027;
+    background-color: #f9f9fd;
   }
   ::-webkit-scrollbar-thumb {
-    background-color: #f9f9fd;
+    background-color: #0f2027;
   }
 `;
 export const Item = styled.div<{ respons715: boolean }>`

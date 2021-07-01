@@ -1,6 +1,8 @@
 import React, { FC } from "react";
 import uniqby from "lodash.uniqby";
 
+import { useTypeSelector } from "../hooks/useTypeSelector";
+
 import { Content, Direct, Foto, Info, Films } from "../styles/style_modal";
 
 interface IProps {
@@ -9,14 +11,17 @@ interface IProps {
 }
 
 const Modal: FC<IProps> = ({ setModal, person }) => {
-  // console.log(person.films.map((item: any) => item.nameRu));
+  const { respons715 } = useTypeSelector((state) => state.respons);
 
   const render = () => {
     if (person) {
-      const uniqFilms = uniqby([...person.films], "filmId");
+      const uniqFilms1 = person.films.filter((item: any) => {
+        return item.professionKey === "DIRECTOR" && Number(item.rating) > 4.0;
+      });
+      const uniqFilms = uniqby([...uniqFilms1], "filmId");
 
       return (
-        <Direct onClick={(e) => e.stopPropagation()}>
+        <Direct onClick={(e) => e.stopPropagation()} respons715={respons715}>
           <Foto>
             <img src={person.posterUrl} alt={person.nameEn} />
           </Foto>
@@ -28,7 +33,7 @@ const Modal: FC<IProps> = ({ setModal, person }) => {
             </p>
             <Films>
               {uniqFilms.map((item) => {
-                return <p>{item.nameRu}</p>;
+                return <p key={item.filmId}>{item.nameRu}</p>;
               })}
             </Films>
           </Info>
