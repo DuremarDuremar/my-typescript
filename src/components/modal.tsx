@@ -3,7 +3,14 @@ import uniqby from "lodash.uniqby";
 
 import { useTypeSelector } from "../hooks/useTypeSelector";
 
-import { Content, Direct, Foto, Info, Films } from "../styles/style_modal";
+import {
+  Content,
+  Direct,
+  Foto,
+  Info,
+  Films,
+  Exit,
+} from "../styles/style_modal";
 
 interface IProps {
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -24,6 +31,11 @@ const Modal: FC<IProps> = ({ setModal, person }) => {
         <Direct onClick={(e) => e.stopPropagation()} respons715={respons715}>
           <Foto>
             <img src={person.posterUrl} alt={person.nameEn} />
+            {!respons715 && (
+              <Exit onClick={() => setModal(false)}>
+                <i className="fas fa-times fa-2x"></i>
+              </Exit>
+            )}
           </Foto>
           <Info>
             <h2>{person.nameRu}</h2>

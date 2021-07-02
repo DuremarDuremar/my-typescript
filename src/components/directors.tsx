@@ -34,6 +34,8 @@ const Directors: FC<IProps> = ({ setModal, setPerson }) => {
         dispatch(fetchDirectors(isVisible, setDopLoading));
       }, 800);
     }
+
+    return () => setDopLoading(false);
   }, [dispatch, isVisible, renderEffect, items.length]);
 
   const containerRef = useElementOnScreen(setIsVisible, 18, "directors");

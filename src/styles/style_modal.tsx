@@ -29,6 +29,7 @@ export const Foto = styled.div`
   width: 200px;
   height: 300px;
   margin: 0px auto;
+  position: relative;
 
   img {
     max-width: 100%;
@@ -58,5 +59,17 @@ export const Films = styled.div`
   }
   p {
     font-style: italic;
+  }
+`;
+
+export const Exit = styled.button`
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+  color: red;
+  transition: all 0.2s linear;
+  :hover {
+    transform: scale(1.5);
   }
 `;
