@@ -5,4 +5,6 @@
 Используеться observer, debounce и горизонтальный скролл. 
 react-transition-group и react-hook-form испоьзуются исключительно ради практики, 
 
-https://duremarduremar.github.io/my-typescript/
+[сайт](https://duremarduremar.github.io/my-typescript/)
+
+
