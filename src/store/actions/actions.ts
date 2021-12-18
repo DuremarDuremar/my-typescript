@@ -92,7 +92,7 @@ export const fetchTop = (
     try {
       setDopLoading(true);
       dispatch({ type: DefaultActionTypes.FETCH_DEFAULT });
-      const resArray = chunk(shuffle(arrayTop), 10)[n].map((item) => {
+      const resArray = chunk(shuffle(arrayTop), 10)[4].map((item) => {
         const res = axios.get(
           `https://kinopoiskapiunofficial.tech/api/v2.1/films/${item}`,
           {
