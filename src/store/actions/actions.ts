@@ -94,7 +94,7 @@ export const fetchTop = (
       dispatch({ type: DefaultActionTypes.FETCH_DEFAULT });
       const resArray = chunk(shuffle(arrayTop), 6)[n].map((item) => {
         const res = axios.get(
-          `https://kinopoiskapiunofficial.tech/api/v2.1/films/${item}`,
+          `https://kinopoiskapiunofficial.tech/api/v2.2/films/${item}`,
           {
             method: "GET",
             headers: {
@@ -110,7 +110,7 @@ export const fetchTop = (
         type: DefaultActionTypes.FETCH_DEFAULT_SUCCESS,
         payload: await Promise.all(resArray).then(function (values) {
           setDopLoading(false);
-          return values.map((item) => item.data.data);
+          return values.map((item) => item.data);
         }),
       });
     } catch (e) {
