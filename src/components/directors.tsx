@@ -29,7 +29,7 @@ const Directors: FC<IProps> = ({ setModal, setPerson }) => {
   }, []);
 
   useEffect(() => {
-    if (isVisible + 8 > renderEffect(items.length)) {
+    if (isVisible + 6 > renderEffect(items.length)) {
       setTimeout(() => {
         dispatch(fetchDirectors(isVisible, setDopLoading));
       }, 800);
