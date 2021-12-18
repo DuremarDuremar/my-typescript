@@ -92,7 +92,7 @@ export const fetchTop = (
     try {
       setDopLoading(true);
       dispatch({ type: DefaultActionTypes.FETCH_DEFAULT });
-      const resArray = chunk(shuffle(arrayTop), 10)[n].map((item) => {
+      const resArray = chunk(shuffle(arrayTop), 6)[n].map((item) => {
         const res = axios.get(
           `https://kinopoiskapiunofficial.tech/api/v2.1/films/${item}`,
           {
@@ -159,7 +159,7 @@ export const fetchDirectors = (
     try {
       setDopLoading(true);
       dispatch({ type: DefaultActionTypes.FETCH_DIRECTORS });
-      const resArray = arrayDirectors.slice(n, n + 8).map((item) => {
+      const resArray = arrayDirectors.slice(n, n + 6).map((item) => {
         const res = axios.get(
           `https://kinopoiskapiunofficial.tech/api/v1/staff/${item}`,
           {
